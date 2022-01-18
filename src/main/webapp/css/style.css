@@ -283,7 +283,43 @@ body {
     margin-bottom: 1.5rem;
   }
   
+  /*Register*/
+  
+.double-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
+.card-form {
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.card-form > div:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  border-radius: 4px;
+  background-color: white;
+  padding: 10px;
+  border: none;
+}
+
+  
 /* Footer */ 
 .footer {
   background-color: rgb(34, 34, 34);

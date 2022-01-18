@@ -17,7 +17,7 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" href="css/style.css">
-<title>Insert title here</title>
+<title>Lump Of Yums</title>
 </head>
 <body>
 
@@ -26,14 +26,14 @@ crossorigin="anonymous">
       <a href="<%=request.getContextPath()%>/index.jsp" class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
         <li><a href="<%=request.getContextPath()%>/index.jsp" >Recipes</a></li>
-        <li><a href="/login">Sign in</a></li>
+        <li><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
         <li class="active"><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
       </ul>
     </nav>
 
   <section class="bg-white main-section">
       <div class="mb-medium">
-        <h1 class="text-brown">Create account</h1>
+        <h1 class="text-brown">Sign Up</h1>
       </div>
       <form id="register-form">
         <div class="double-panel bg-orange card-form">

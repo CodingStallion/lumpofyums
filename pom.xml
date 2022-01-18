@@ -4,8 +4,6 @@
   <artifactId>lumpofyums</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>LumpOfYums</name>
-  <description>This is the offical web application for Lumps Of Yums.</description>
   <dependencies>
  <dependency>
  <groupId>javax.servlet</groupId>
@@ -19,6 +17,13 @@
  <version>2.3.1</version>
  <scope>provided</scope>
  </dependency>
+ <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+ <groupId>mysql</groupId>
+ <artifactId>mysql-connector-java</artifactId>
+ <version>8.0.25</version>
+</dependency>
+ 
 </dependencies>
   <build>
     <plugins>

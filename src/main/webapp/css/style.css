@@ -1,14 +1,16 @@
 @charset "ISO-8859-1";
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  position: relative;
-}
 
 html {
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'Cookie', cursive;
+  margin: 0;
+  position: relative;
+}
+
 
 /*Navigation*/
 
@@ -105,12 +107,6 @@ button {
   margin: 0px;
   padding: 0px;
   box-sizing: inherit;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  position: relative;
 }
 
 .bg-orange {
@@ -246,7 +242,7 @@ body {
   position: relative;
 }
 
-/*Review List*/
+/*Recipe List*/
 
    ul.restaurant-list {
     display: flex;
@@ -305,7 +301,7 @@ body {
 }
 
 .input-group label {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   margin-bottom: 5px;
   font-weight: bold;
 }
@@ -317,6 +313,35 @@ body {
   background-color: white;
   padding: 10px;
   border: none;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: rgb(218, 57, 8);
+  color: white;
+  border-radius: 4px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(184, 60, 23);
+}
+
+.btn-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  color: rgb(218, 57, 8);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  color: rgb(184, 60, 23);
 }
 
   

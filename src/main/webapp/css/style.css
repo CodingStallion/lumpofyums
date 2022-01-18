@@ -129,6 +129,7 @@ button {
 
 .mb-small {
   margin-bottom: 1.5rem;
+ font-size: 1.3rem;
 }
 
 .mb-medium {
@@ -240,6 +241,15 @@ button {
 .search-input {
   width: 100%;
   position: relative;
+}
+
+/*Login*/
+
+.right-info {
+  padding: 20px;
+  text-align: center;
+  max-width: 300px;
+  margin: auto;
 }
 
 /*Recipe List*/

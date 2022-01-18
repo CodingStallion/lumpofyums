@@ -1,0 +1,296 @@
+@charset "ISO-8859-1";
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  position: relative;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+/*Navigation*/
+
+.nav-wrapper {
+  z-index: 10;
+  background-color: #fafafa;
+  padding: 20px 30px;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: 1px solid #eeeeee;
+}
+
+ul.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+ul.nav-list li:not(:last-child) {
+  margin-right: 2rem;
+}
+
+ul.nav-list li a {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+ul.nav-list li {
+  transition: all 0.2s;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+ul.nav-list li:hover,
+ul.nav-list li.active {
+  background-color: #ffc524;
+}
+
+ul.nav-list li:hover a,
+ul.nav-list li.active a {
+  color: white;
+}
+
+.nav-wrapper .brand-logo {
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+/* Section and Body */
+
+h1,
+.h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: lighter;
+}
+
+h2,
+.h2 {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+h4,
+.h4 {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  position: relative;
+}
+
+.bg-orange {
+  background-color: #ffc524;
+  color: black;
+}
+
+.bg-white {
+  background-color: white;
+  color: black;
+}
+
+.text-brown {
+  color: brown;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.mb-small {
+  margin-bottom: 1.5rem;
+}
+
+.mb-medium {
+  margin-bottom: 2.5rem;
+}
+
+.mb-large {
+  margin-bottom: 4rem;
+}
+
+.mr-small {
+  margin-right: 1.5rem;
+}
+
+.mr-medium {
+  margin-right: 2.5rem;
+}
+
+.mr-large {
+  margin-right: 4rem;
+}
+
+.ml-small {
+  margin-left: 1.5rem;
+}
+
+.ml-medium {
+  margin-left: 2.5rem;
+}
+
+.ml-large {
+  margin-left: 4rem;
+}
+
+.mt-small {
+  margin-top: 1.5rem;
+}
+
+.mt-medium {
+  margin-top: 2.5rem;
+}
+
+.mt-large {
+  margin-top: 4rem;
+}
+
+.main-section {
+  margin-top: 69px;
+  padding: 50px;
+}
+
+.nav-wrapper .brand-logo {
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.input {
+  padding: 10px 20px;
+  border: 2px solid rgb(233, 143, 116);
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #ffc524;
+  color: white;
+  border-radius: 4px;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(184, 60, 23);
+}
+
+.btn-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  color: rgb(218, 57, 8);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  color: rgb(184, 60, 23);
+}
+
+.search-input button {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+}
+
+.search-input button i {
+  color: rgb(233, 143, 116);
+}
+
+.search-input input {
+  padding-left: 30px;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  position: relative;
+}
+
+/*Review List*/
+
+   ul.restaurant-list {
+    display: flex;
+    flex-flow: row wrap;
+    list-style: none;
+  }
+  
+  .restaurant-item {
+    margin: 1rem;
+    width: 350px;
+    padding: 20px;
+    border-radius: 4px;
+    border: 2px solid rgb(233, 143, 116);
+    display: block;
+    background-color: #fafafa;
+    transition: transform 0.4s;
+  }
+  
+  .restaurant-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .restaurant-item h4,
+  .restaurant-item p {
+    text-decoration: none;
+    color: black;
+  }
+  
+    .restaurant-item img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  
+
+/* Footer */ 
+.footer {
+  background-color: rgb(34, 34, 34);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+

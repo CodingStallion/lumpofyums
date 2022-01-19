@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <!-- Google Fonts 1 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +35,7 @@ crossorigin="anonymous">
       </div>
       <div class="double-panel">
         <div class="left">
-          <form id="login-form" class="card-form bg-orange">
+          <form id="login-form" class="card-form bg-orange" action="LoginServlet" method="post"> 
             <div class="input-group">
               <label for="username">Username</label>
               <input type="text" placeholder="Username" name="username" />

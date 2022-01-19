@@ -354,6 +354,25 @@ button {
   color: rgb(184, 60, 23);
 }
 
+
+/*Account*/
+
+.account-detail {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.account-detail:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.account-detail span {
+  display: block;
+  width: 100px;
+  font-weight: bold;
+}
+
   
 /* Footer */ 
 .footer {

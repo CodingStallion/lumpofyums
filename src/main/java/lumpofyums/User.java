@@ -25,8 +25,12 @@ public class User {
     }
     
     //Id declaration
-    
-    public int getId() {
+   
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
         return id;
     }
 

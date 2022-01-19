@@ -34,4 +34,32 @@ public class UserDatabase {
         }
         return set;
     }
+    
+  //user login
+    public User login(String username, String password){
+        User usr=null;
+        try{
+            String query ="select * from user where username=? and password=?";
+            PreparedStatement pst = this.con.prepareStatement(query);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                usr = new User();
+                usr.setId(rs.getInt("id"));
+                usr.setUserName(rs.getString("username"));
+                usr.setPassword(rs.getString("password"));
+                usr.setEmail(rs.getString("email"));
+      
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return usr;
+    }
+
+
 }

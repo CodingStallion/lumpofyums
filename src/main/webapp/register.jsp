@@ -35,7 +35,7 @@ crossorigin="anonymous">
       <div class="mb-medium">
         <h1 class="text-brown">Sign Up</h1>
       </div>
-      <form id="register-form">
+      <form id="register-form" action="RegisterServlet" method="post">
         <div class="double-panel bg-orange card-form">
           <div class="left card-form">
             <div class="input-group">

@@ -26,7 +26,6 @@ crossorigin="anonymous">
       <a href="<%=request.getContextPath()%>/index.jsp" class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
         <li><a href="<%=request.getContextPath()%>/index.jsp" >Recipes</a></li>
-        <li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
         <li><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
         <li class="active"><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
       </ul>

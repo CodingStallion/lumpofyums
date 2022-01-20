@@ -33,10 +33,17 @@ crossorigin="anonymous">
       <a href="<%=request.getContextPath()%>/index.jsp"  class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
         <li><a href="<%=request.getContextPath()%>/index.jsp" >Recipes</a></li>
-        <li><a href="LogoutServlet">Logout</a></li>
-        <li class="active"><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
+                    <%               
+                if (session.getAttribute("logUser") == null) {
+            %>
         <li><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
         <li><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
+        <% } else {
+         %>
+         	<li class="active"><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
+            <li><a href="LogoutServlet">Logout</a></li>
+        <% }%>
+
       </ul>
     </nav>
     
@@ -51,19 +58,19 @@ crossorigin="anonymous">
         </div>
         <div class="account-detail">
           <span>Gender:</span>
-          <p id="gender"></p>
+          <p id="gender"><%= user.getGender() %></p>
         </div>
         <div class="account-detail">
           <span>First name:</span>
-          <p id="first_name"></p>
+          <p id="first_name"><%= user.getFirstName() %></p>
         </div>
         <div class="account-detail">
           <span>Last name:</span>
-          <p id="last_name"></p>
+          <p id="last_name"><%= user.getLastName() %></p>
         </div>
         <div class="account-detail">
           <span>Address:</span>
-          <p id="address"></p>
+          <p id="address"><%= user.getAddress() %></p>
         </div>
         <div class="account-detail">
           <span>Email:</span>
@@ -71,7 +78,7 @@ crossorigin="anonymous">
         </div>
         <div class="account-detail">
           <span>Phone:</span>
-          <p id="phone"></p>
+          <p id="phone"><%= user.getPhone() %></p>
         </div>
       </div>
       <div class="deactivate">

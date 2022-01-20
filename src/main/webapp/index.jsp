@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +23,21 @@ crossorigin="anonymous">
 <body>
 <!--  Lump Of Yums Update 1 -->
     <nav class="nav-wrapper">
+    
       <a href="<%=request.getContextPath()%>/index.jsp"  class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
         <li class="active"><a href="<%=request.getContextPath()%>/index.jsp" >Recipes</a></li>
+            <%
+                                   
+                if (session.getAttribute("logUser") == null) {
+            %>
         <li><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
         <li><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
+        <% } else {
+         %>
+         	<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
+            <li><a href="LogoutServlet">Logout</a></li>
+        <% }%>
       </ul>
     </nav>
 

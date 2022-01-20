@@ -50,9 +50,12 @@ public class UserDatabase {
                 usr = new User();
                 usr.setId(rs.getInt("id"));
                 usr.setUserName(rs.getString("username"));
-                usr.setPassword(rs.getString("password"));
                 usr.setEmail(rs.getString("email"));
-      
+                usr.setAddress(rs.getString("address"));
+                usr.setFirstName(rs.getString("first_name"));
+                usr.setLastName(rs.getString("last_name"));
+                usr.setGender(rs.getString("gender"));
+                usr.setPhone(rs.getInt("phone"));
             }
             
         }catch(Exception e){

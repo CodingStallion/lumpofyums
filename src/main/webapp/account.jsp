@@ -30,9 +30,9 @@ crossorigin="anonymous">
 
 <!--  Lump Of Yums Update 1 -->
     <nav class="nav-wrapper">
-      <a href="<%=request.getContextPath()%>/index.jsp"  class="brand-logo">Lump Of Yums</a>
+      <a href="RecipeServlet"  class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
-        <li><a href="<%=request.getContextPath()%>/index.jsp" >Recipes</a></li>
+        <li><a href="RecipeServlet" >Recipes</a></li>
                     <%               
                 if (session.getAttribute("logUser") == null) {
             %>

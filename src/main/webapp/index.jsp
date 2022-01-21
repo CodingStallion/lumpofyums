@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,9 +23,9 @@ crossorigin="anonymous">
 <!--  Lump Of Yums Update 1 -->
     <nav class="nav-wrapper">
     
-      <a href="<%=request.getContextPath()%>/index.jsp"  class="brand-logo">Lump Of Yums</a>
+      <a href="RecipeServlet" class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
-        <li class="active"><a href="<%=request.getContextPath()%>/index.jsp" >Recipes</a></li>
+        <li class="active"><a href="RecipeServlet" >Recipes</a></li>
             <%
                                    
                 if (session.getAttribute("logUser") == null) {
@@ -44,6 +43,7 @@ crossorigin="anonymous">
 <section class="bg-orange main-section">
       <div class="mb-medium">
         <h1 class="text-brown">Recipes</h1>
+        <a class="btn" href="<%=request.getContextPath()%>/create_recipe.jsp">Create Recipe</a>
       </div>
       <form id="search-form" class="search-input mb-large">
         <button type="submit">
@@ -59,13 +59,14 @@ crossorigin="anonymous">
 
       <div>
         <ul class="restaurant-list">
-        	  <li class="restaurant-item">
-                <img src="assets/recipie_sample.jpg" alt="Img">
+        <c:forEach var="recipe" items="${listUsers}">
+        	  <li class="restaurant-item" >
                 <div class="text-align-center">
-                    <h4 class="mb-small">Recipe 1</h4>
+                    <h4 class="mb-small"><c:out value="${recipe.food_name}" /></h4>
                     <a class="btn">More info</a>
                   </div>
             </li>
+            </c:forEach>
         </ul>
       </div>
     </section>

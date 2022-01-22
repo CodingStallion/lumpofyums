@@ -22,9 +22,9 @@ crossorigin="anonymous">
 </head>
 <body>
     <nav class="nav-wrapper">
-      <a href="RecipeServlet" class="brand-logo">Lump Of Yums</a>
+      <a href="<%=request.getContextPath()%>/RecipeServlet/home" class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
-        <li><a href="RecipeServlet" >Recipes</a></li>
+        <li><a href="<%=request.getContextPath()%>/RecipeServlet/home" >Recipes</a></li>
         <li class="active"><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
         <li><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
       </ul>
@@ -53,8 +53,8 @@ crossorigin="anonymous">
         <div class="right">
           <div class="right-info">
             <p class="mb-small">
-              Join Lump Of Yums and discover a variety of recipes] from
-              different the community.
+              Join Lump Of Yums and discover a variety of recipes from
+              the community.
             </p>
             <div>
               <a class="btn" href="<%=request.getContextPath()%>/register.jsp">Sign up here</a>

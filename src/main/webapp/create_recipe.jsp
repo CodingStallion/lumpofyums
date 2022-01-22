@@ -23,7 +23,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
 crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <title>Lump Of Yums</title>
 </head>
 <body>
@@ -31,9 +31,9 @@ crossorigin="anonymous">
 <!--  Lump Of Yums Update 1 -->
     <nav class="nav-wrapper">
     
-      <a href="RecipeServlet"  class="brand-logo">Lump Of Yums</a>
+      <a href="<%=request.getContextPath()%>/RecipeServlet/home" class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
-        <li class="active"><a href="RecipeServlet" >Recipes</a></li>
+        <li class="active"><a href="<%=request.getContextPath()%>/RecipeServlet/home" >Recipes</a></li>
             <%
                                    
                 if (session.getAttribute("logUser") == null) {

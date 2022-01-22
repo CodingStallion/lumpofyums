@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,16 +16,16 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
 crossorigin="anonymous">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <title>Lump Of Yums</title>
 </head>
 <body>
 <!--  Lump Of Yums Update 1 -->
     <nav class="nav-wrapper">
     
-      <a href="RecipeServlet" class="brand-logo">Lump Of Yums</a>
+      <a href="<%=request.getContextPath()%>/RecipeServlet/home" class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
-        <li class="active"><a href="RecipeServlet" >Recipes</a></li>
+        <li class="active"><a href="<%=request.getContextPath()%>/RecipeServlet/home">Recipes</a></li>
             <%
                                    
                 if (session.getAttribute("logUser") == null) {
@@ -42,12 +42,16 @@ crossorigin="anonymous">
 
 <section class="bg-orange main-section">
       <div class="mb-medium">
-        <h1 class="text-brown">Recipes</h1>
-        <a class="btn" href="<%=request.getContextPath()%>/create_recipe.jsp">Create Recipe</a>
+        <h1 class="text-brown" style="float: left;">Recipes</h1>
+              <%
+                                   
+                if (session.getAttribute("logUser") != null) {
+            %>
+        <a class="btn" style="float: right;" href="<%=request.getContextPath()%>/create_recipe.jsp">Create Recipe</a>
+         <% }%>
       </div>
       <form id="search-form" class="search-input mb-large">
         <button type="submit">
-          <i class="material-icons btn-icon">search</i>
         </button>
         <input
           type="text"
@@ -63,7 +67,8 @@ crossorigin="anonymous">
         	  <li class="restaurant-item" >
                 <div class="text-align-center">
                     <h4 class="mb-small"><c:out value="${recipe.food_name}" /></h4>
-                    <a class="btn" href="<%=request.getContextPath()%>/Recipe.jsp">More info</a>
+                    <h6><c:out value="Posted by: ${recipe.username}" /></h6>
+                    <a class="btn" href="recipe?food_name=<c:out value='${recipe.food_name}' />">More info</a>
                   </div>
             </li>
             </c:forEach>

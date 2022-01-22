@@ -11,11 +11,19 @@ public class Recipe {
 	String ingredients;
 	String preparation;
 	int uid;
+	String username;
 	
-	public Recipe(int id, String food_name, int prep_time, int cooking_time, String level, String description, String ingredients, String preparation, int uid) {
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Recipe(String food_name, int prep_time, int cooking_time, String level, String description, String ingredients, String preparation, int uid, String username) {
 		
 		super();
-		this.id = id;
 		this.food_name = food_name;
 		this.prep_time = prep_time;
 		this.cooking_time = cooking_time;
@@ -24,6 +32,7 @@ public class Recipe {
 		this.ingredients = ingredients;
 		this.preparation = preparation;
 		this.uid = uid;
+		this.username = username;
 		
 		
 	}

@@ -68,6 +68,135 @@ ul.nav-list li.active a {
   font-size: 1.5rem;
 }
 
+/*Recipe*/
+
+.restaurant-item {
+  margin: 1rem;
+  width: 350px;
+  padding: 20px;
+  border-radius: 4px;
+  border: 2px solid rgb(233, 143, 116);
+  display: block;
+  background-color: #fafafa;
+  transition: transform 0.4s;
+}
+
+.restaurant-item:hover {
+  transform: translateY(-5px);
+}
+
+.restaurant-item h4,
+.restaurant-item p {
+  text-decoration: none;
+  color: black;
+}
+
+.restaurant-item img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.rating {
+  color: rgb(255, 174, 0);
+}
+
+.restaurant-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.restaurant-info .price {
+  border-left: 1px solid black;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.restaurant-header,
+.restaurant-details,
+.restaurant-reviews {
+  margin-bottom: 4rem;
+}
+
+.full-width-img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+
+.restaurant-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.restaurant-info .price {
+  border-left: 1px solid black;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.restaurant-header,
+.restaurant-details,
+.restaurant-reviews {
+  margin-bottom: 4rem;
+}
+
+.full-width-img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.restaurant-details-content {
+  background-color: #fafafa;
+  width: fit-content;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.restaurant-details-content > div {
+  width: 600px;
+}
+
+.restaurant-details-content .left {
+  padding: 30px;
+}
+
+.restaurant-details-content .left > div {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.restaurant-details-content .left > div i {
+  margin-right: 1rem;
+}
+
+.restaurant-details-content .right img {
+  max-height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.restaurant-reviews .review-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 /* Section and Body */
 
 h1,

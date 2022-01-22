@@ -63,7 +63,7 @@ crossorigin="anonymous">
         	  <li class="restaurant-item" >
                 <div class="text-align-center">
                     <h4 class="mb-small"><c:out value="${recipe.food_name}" /></h4>
-                    <a class="btn">More info</a>
+                    <a class="btn" href="<%=request.getContextPath()%>/Recipe.jsp">More info</a>
                   </div>
             </li>
             </c:forEach>

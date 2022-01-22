@@ -125,10 +125,12 @@ crossorigin="anonymous">
         </form>
       </div>
 
-    <footer class="footer">
+   
+    </section>
+    
+     <footer class="footer">
       <h4><i class="material-icons">dining</i></h4>
       <span>&copy; Lump Of Yums 2022</span>
     </footer>
-    </section>
 </body>
 </html>

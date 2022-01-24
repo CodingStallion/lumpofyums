@@ -92,10 +92,61 @@
           </div>
         </div>
       </div>
+        
       <div class="restaurant-reviews">
-        <h1 class="text-brown mb-small">Reviews</h1>
-        <a class="btn" id="btn-review">Click here</a>
+      
+            <%
+                                   
+                if (session.getAttribute("logUser") == null) {
+            %>
+        
+             <div class="restaurant-reviews" id="unauthenticated-reviews">
+        <h1 class="text-brown mb-small">Want to write a comment?</h1>
+        <div class="review-btns mb-medium">
+          <a href="<%=request.getContextPath()%>/login.jsp"class="btn mr-small">Sign in</a>
+          <a href="<%=request.getContextPath()%>/register.jsp" class="btn">Sign up</a>
+        </div>
       </div>
+      </div>
+      
+        <% } else {
+         %>
+      
+  		<h2 class="text-brown mb-small">Write a comment</h2>
+  		<form id="review-form">
+          <div class="input-group mb-small">
+            <textarea
+              rows="10"
+              cols="30"
+              name="comment"
+              placeholder="Your comment here"
+            ></textarea>
+            <br />
+          </div>
+          <input type="submit" class="btn" value="Submit" />
+          </form>
+         
+        <% }%>
+        
+          <h1 class="text-brown mb-small" style="margin-top: 30px;">Comments</h1>
+ 			
+ 			<div class="card" style="width: 100%">
+  <div class="card-body">
+    <h4 class="card-title" style="display:inline;">Username123</h4>     
+    <%
+                                   
+                if (session.getAttribute("logUser") != null) {
+            %>
+            
+            <div style="display:inline;"><i class="material-icons btn-icon" id="btn-edit">edit</i> <i class="material-icons btn-icon" id="btn-delete">delete</i></div>
+               <% }%>
+        
+            
+    <p class="card-text">Date created</p> 
+    <p class="card-text">Hi, this is a comment</p>
+  </div>
+</div>
+     
     </section>
     
         <footer class="footer">

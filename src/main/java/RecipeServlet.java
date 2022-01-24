@@ -1,7 +1,5 @@
 
-
 import java.io.IOException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lumpofyums.Recipe;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,6 +27,7 @@ import javax.servlet.RequestDispatcher;
 @WebServlet("/RecipeServlet")
 public class RecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	
 	//Step 1: Prepare list of variables used for database connections
 		 private String jdbcURL = "jdbc:mysql://localhost:3306/lump_of_yums";
@@ -67,13 +65,17 @@ public class RecipeServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		//Step 4: Depending on the request servlet path, determine the function to invoke using the follow switch statement.
+
+		// Step 4: Depending on the request servlet path, determine the function to
+		// invoke using the follow switch statement.
 		String action = request.getServletPath();
+
 		 try {
 		 switch (action) {
 		 case "/RecipeServlet/recipe":
@@ -95,48 +97,45 @@ public class RecipeServlet extends HttpServlet {
 		 } catch (SQLException ex) {
 		 throw new ServletException(ex);
 		 }
-
-		
-		
 	}
-	
-	//Step 5: listUsers function to connect to the database and retrieve all users records
+
+	// Step 5: listUsers function to connect to the database and retrieve all users
+	// records
 	private void listUsers(HttpServletRequest request, HttpServletResponse response)
-	throws SQLException, IOException, ServletException 
-	{
-	List <Recipe> recipes = new ArrayList <>();
-	 try (Connection connection = getConnection();
-	 // Step 5.1: Create a statement using connection object
-	 PreparedStatement preparedStatement = 
-	connection.prepareStatement(SELECT_ALL_RECIPE);) {
-	 // Step 5.2: Execute the query or update query
-	 ResultSet rs = preparedStatement.executeQuery();
-	 // Step 5.3: Process the ResultSet object.
-	 while (rs.next()) {
-		 String food_name = rs.getString("food_name");
-		 int prep_time = rs.getInt("prep_time");
-		 int cooking_time = rs.getInt("cooking_time");
-		 String level = rs.getString("level");
-		 String description = rs.getString("description");
-		 String ingredients = rs.getString("ingredients");
-		 String preparation = rs.getString("preparation");
-		 int uid = rs.getInt("uid");
-		 String username= rs.getString("username");
+			throws SQLException, IOException, ServletException {
+		List<Recipe> recipes = new ArrayList<>();
+		try (Connection connection = getConnection();
+				// Step 5.1: Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_RECIPE);) {
+			// Step 5.2: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+			// Step 5.3: Process the ResultSet object.
+			while (rs.next()) {
+				String food_name = rs.getString("food_name");
+				int prep_time = rs.getInt("prep_time");
+				int cooking_time = rs.getInt("cooking_time");
+				String level = rs.getString("level");
+				String description = rs.getString("description");
+				String ingredients = rs.getString("ingredients");
+				String preparation = rs.getString("preparation");
+				int uid = rs.getInt("uid");
+				String username = rs.getString("username");
 
-		 recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, username));
-	 }
-	 } catch (SQLException e) {
-	 System.out.println(e.getMessage());
-	 }
-	// Step 5.4: Set the users list into the listUsers attribute to be pass to the userManagement.jsp
-	request.setAttribute("listUsers", recipes);
-	request.getRequestDispatcher("/index.jsp").forward(request, response);
-	
-	
+				recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation,
+						uid, username));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// Step 5.4: Set the users list into the listUsers attribute to be pass to the
+		// userManagement.jsp
+		request.setAttribute("listUsers", recipes);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
+
 	}
-	
-	
-	//method to get parameter, query database for existing user data and redirect to user edit page
+
+	// method to get parameter, query database for existing user data and redirect
+	// to user edit page
 	private void showRecipe(HttpServletRequest request, HttpServletResponse response)
 	throws SQLException, ServletException, IOException {
 	
@@ -164,15 +163,15 @@ public class RecipeServlet extends HttpServlet {
 		 String username= rs.getString("username");
 		 existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, username);
 
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// Step 5: Set existingUser to request and serve up the userEdit form
+		request.setAttribute("recipe", existingRecipe);
+		request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
 	}
-	} catch (SQLException e) {
-	System.out.println(e.getMessage());
-	}
-	//Step 5: Set existingUser to request and serve up the userEdit form
-	request.setAttribute("recipe", existingRecipe);
-	request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
 
-	}
 	
 	private void showRecipeEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
@@ -212,7 +211,6 @@ public class RecipeServlet extends HttpServlet {
 			}
 	
 	
-
 	//method to update the user table base on the form data
 	private void updateRecipe(HttpServletRequest request, HttpServletResponse response)
 	throws SQLException, IOException {
@@ -252,7 +250,8 @@ public class RecipeServlet extends HttpServlet {
 	//Step 1: Retrieve value from the request
 	 String food_name = request.getParameter("food_name");
 	 //Step 2: Attempt connection with database and execute delete user SQL query
-	 try (Connection connection = getConnection(); PreparedStatement statement = 
+	 try (Connection connection = getConnection(); 
+        PreparedStatement statement = 
 	connection.prepareStatement(DELETE_RECIPE_SQL);) {
 	 statement.setString(1, food_name);
 	 int i = statement.executeUpdate();
@@ -261,11 +260,12 @@ public class RecipeServlet extends HttpServlet {
 	 response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
 	}
 
-
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
 

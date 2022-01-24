@@ -35,11 +35,22 @@ crossorigin="anonymous">
         <% } else {
          %>
          	<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
-            <li><a href="LogoutServlet">Logout</a></li>
+            <li><a href="<%=request.getContextPath()%>/LogoutServlet">Logout</a></li>
         <% }%>
       </ul>
     </nav>
     <section class="bg-orange main-section">
+             <%
+                                   
+                if (session.getAttribute("logUser") != null) {
+            %>
+            
+           
+    <a class="btn" style="float: right; color:white;" href="edit?food_name=<c:out value='${recipe.food_name}' />">Edit Recipe</a>
+    
+	 <a class="btn" style="float: right; margin-right: 10px; color:white;" href="delete?food_name=<c:out value='${recipe.food_name}' />">Delete Recipe</a>
+   	
+     <% }%>
       <div class="restaurant-header">
       <c:if test="${recipe != null}">
         <h1 class="text-brown" id="name"><c:out value="${recipe.food_name}" /></h1>
@@ -58,6 +69,7 @@ crossorigin="anonymous">
         <div class="double-panel restaurant-details-content">
           <div class="left" style="width: 70%;">
             <div>
+            
               <i class="material-icons">description</i>
               <span class="address"><c:out value="${recipe.description}" /></span>
                </div>

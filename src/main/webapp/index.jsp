@@ -35,7 +35,7 @@ crossorigin="anonymous">
         <% } else {
          %>
          	<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
-            <li><a href="LogoutServlet">Logout</a></li>
+            <li><a href="<%=request.getContextPath()%>/LogoutServlet">Logout</a></li>
         <% }%>
       </ul>
     </nav>
@@ -45,7 +45,7 @@ crossorigin="anonymous">
         <h1 class="text-brown" style="float: left;">Recipes</h1>
               <%
                                    
-                if (session.getAttribute("logUser") != null) {
+                if (session.getAttribute("logUser") != null ) {
             %>
         <a class="btn" style="float: right;" href="<%=request.getContextPath()%>/create_recipe.jsp">Create Recipe</a>
          <% }%>

@@ -1,5 +1,7 @@
 package lumpofyums;
 
+import java.sql.Timestamp;
+
 public class Recipe {
 	
 	int id;
@@ -11,6 +13,7 @@ public class Recipe {
 	String ingredients;
 	String preparation;
 	int uid;
+	Timestamp created_at;
 	String username;
 	
 	public String getUsername() {

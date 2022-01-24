@@ -24,31 +24,46 @@
 <title>Lump Of Yums</title>
 </head>
 <body>
-	<!--  Lump Of Yums Update 1 -->
-	<nav class="nav-wrapper">
+<!--  Lump Of Yums Update 1 -->
+    <nav class="nav-wrapper">
+    
+      <a href="<%=request.getContextPath()%>/RecipeServlet/home" class="brand-logo">Lump Of Yums</a>
+      <ul class="nav-list">
+        <li class="active"><a href="<%=request.getContextPath()%>/RecipeServlet/home">Recipes</a></li>
+            <%
+                                   
+                if (session.getAttribute("logUser") == null) {
+            %>
+        <li><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
+        <li><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
+        <% } else {
+         %>
+         	<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
+            <li><a href="<%=request.getContextPath()%>/LogoutServlet">Logout</a></li>
+        <% }%>
+      </ul>
+    </nav>
 
-		<a href="<%=request.getContextPath()%>/RecipeServlet/home"
-			class="brand-logo">Lump Of Yums</a>
-		<ul class="nav-list">
-			<li class="active"><a
-				href="<%=request.getContextPath()%>/RecipeServlet/home">Recipes</a></li>
-			<%
-			if (session.getAttribute("logUser") == null) {
-			%>
-			<li><a href="<%=request.getContextPath()%>/login.jsp">Sign
-					in</a></li>
-			<li><a href="<%=request.getContextPath()%>/register.jsp">Sign
-					up</a></li>
-			<%
-			} else {
-			%>
-			<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
-			<li><a href="LogoutServlet">Logout</a></li>
-			<%
-			}
-			%>
-		</ul>
-	</nav>
+<section class="bg-orange main-section">
+      <div class="mb-medium">
+        <h1 class="text-brown" style="float: left;">Recipes</h1>
+              <%
+                                   
+                if (session.getAttribute("logUser") != null ) {
+            %>
+        <a class="btn" style="float: right;" href="<%=request.getContextPath()%>/create_recipe.jsp">Create Recipe</a>
+         <% }%>
+      </div>
+      <form id="search-form" class="search-input mb-large">
+        <button type="submit">
+        </button>
+        <input
+          type="text"
+          placeholder="Search"
+          name="search_term"
+          class="input"
+        />
+      </form>
 
 	<section class="bg-orange main-section">
 		<div class="mb-medium">

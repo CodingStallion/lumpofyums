@@ -1,17 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
- <%@page import="lumpofyums.User"%>
-<% User user = (User) session.getAttribute("logUser");
-    if(user==null){
-        response.sendRedirect("index.jsp");
-    }
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,12 +20,11 @@ crossorigin="anonymous">
 </head>
 <body>
 
-<!--  Lump Of Yums Update 1 -->
     <nav class="nav-wrapper">
     
       <a href="<%=request.getContextPath()%>/RecipeServlet/home" class="brand-logo">Lump Of Yums</a>
       <ul class="nav-list">
-        <li class="active"><a href="<%=request.getContextPath()%>/RecipeServlet/home" >Recipes</a></li>
+        <li class="active"><a href="<%=request.getContextPath()%>/RecipeServlet/home">Recipes</a></li>
             <%
                                    
                 if (session.getAttribute("logUser") == null) {
@@ -49,7 +40,7 @@ crossorigin="anonymous">
     </nav>
     <section class="bg-orange main-section">
       <div class="restaurant-header">
-        <h1 class="text-brown" id="name">Share your recipe with the community</h1>
+        <h1 class="text-brown" id="name">Edit your recipe</h1>
         <div class="restaurant-info">
           <div class="rating"></div>
           <div class="price" id="price"></div>
@@ -61,28 +52,34 @@ crossorigin="anonymous">
 
 		
       <div class="restaurant-reviews" id="authenticated-reviews">
-        <form id="review-form" action="CreateRecipeServlet" method="post">
+        <form id="review-form" action="update" method="post">
         
               <h2 class="text-brown mb-small">Recipe name</h2> 
     		<div class="mb-small">
-              <input type="text" placeholder="Recipe name" name="food_name"/> 
+              <input type="text" placeholder="Recipe name" name="food_name" value="<c:out value="${edit.food_name}" />"/> 
+            </div>
+            
+             	<div class="mb-small">
+              <input type="hidden" placeholder="Recipe name" name="oriname" value="<c:out value="${edit.food_name}" />"/> 
             </div>
           <h2 class="text-brown mb-small">Prep time</h2> 
     		<div class="mb-small">
-              <input type="number" value="1" name="prep_time" min="1" max="100" /> minutes
+              <input type="number"  name="prep_time" min="1" max="100" value="<c:out value="${edit.prep_time}" />" /> minutes
             </div>
+            	<div class="mb-small">
+              <input type="hidden"  name="uid" value="<c:out value="${edit.uid}" />" /> 
+            </div>
+ 
           <h2 class="text-brown mb-small">Cooking time</h2>
     		<div class="mb-small">
-              <input type="number" value="1" name="cooking_time" min="1" max="100" /> minutes
+              <input type="number" name="cooking_time" min="1" max="100" value="<c:out value="${edit.cooking_time}" />" /> minutes
             </div>
             
-           <div class="mb-small" style="display: none;">
-              <input type="number" value=<%= user.getId() %> name="uid" />
-            </div>
 
          <h2 class="text-brown mb-small">Level</h2>
     		<div class="mb-small">
               <select name="level">
+                <option value="<c:out value="${edit.level}" />"><c:out value="${edit.level}" /></option>
                 <option value="Easy">Easy</option>
                 <option value="Normal">Normal</option>
                 <option value="Hard">Hard</option>
@@ -97,7 +94,7 @@ crossorigin="anonymous">
               cols="6"
               name="description"
               placeholder="Your description here"
-            ></textarea>
+            ><c:out value="${edit.description}" /></textarea>
           </div>
           
         <h2 class="text-brown mb-small">Ingredients</h2>
@@ -107,7 +104,7 @@ crossorigin="anonymous">
               cols="30"
               name="ingredients"
               placeholder="Your ingredients here"
-            ></textarea>
+            > <c:out value="${edit.ingredients}" /></textarea>
           </div>
           
      <h2 class="text-brown mb-small">Preparation</h2>
@@ -117,11 +114,10 @@ crossorigin="anonymous">
               cols="30"
               name="preparation"
               placeholder="Your preparation here"
-            ></textarea>
+            ><c:out value="${edit.preparation}" /></textarea>
           </div>
           <input type="submit" class="btn" value="Submit" />
-          <div class="success-msg"></div>
-          <div class="error-msg"></div>
+   
         </form>
       </div>
 

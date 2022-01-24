@@ -44,26 +44,6 @@
       </ul>
     </nav>
 
-<section class="bg-orange main-section">
-      <div class="mb-medium">
-        <h1 class="text-brown" style="float: left;">Recipes</h1>
-              <%
-                                   
-                if (session.getAttribute("logUser") != null ) {
-            %>
-        <a class="btn" style="float: right;" href="<%=request.getContextPath()%>/create_recipe.jsp">Create Recipe</a>
-         <% }%>
-      </div>
-      <form id="search-form" class="search-input mb-large">
-        <button type="submit">
-        </button>
-        <input
-          type="text"
-          placeholder="Search"
-          name="search_term"
-          class="input"
-        />
-      </form>
 
 	<section class="bg-orange main-section">
 		<div class="mb-medium">
@@ -98,14 +78,6 @@
 							<a class="btn"
 								href="recipe?food_name=<c:out value='${recipe.food_name}' />">More
 								info</a>
-							<%
-							if (session.getAttribute("logUser") != null) {
-							%>
-							<a class="btn"
-								href="delete?food_name=<c:out value='${recipe.food_name}'/>">Delete</a>
-							<%
-							}
-							%>
 						</div>
 					</li>
 				</c:forEach>

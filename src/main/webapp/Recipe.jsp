@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="lumpofyums.User"%>
+
+<%@page import="lumpofyums.Recipe"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +37,12 @@
                                    
                 if (session.getAttribute("logUser") == null) {
             %>
+            
+ 
+            
         <li><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
         <li><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
+  
         <% } else {
          %>
          	<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
@@ -44,17 +51,22 @@
       </ul>
     </nav>
     <section class="bg-orange main-section">
-             <%
-                                   
-                if (session.getAttribute("logUser") != null) {
+    
+ 
+             
+           <%
+           String userName = (String) session.getAttribute("logUser1");
+         
             %>
             
-           
+      
+  <c:if test="${recipe.username == logUser1}">
     <a class="btn" style="float: right; color:white;" href="edit?food_name=<c:out value='${recipe.food_name}' />">Edit Recipe</a>
     
 	 <a class="btn" style="float: right; margin-right: 10px; color:white;" href="delete?food_name=<c:out value='${recipe.food_name}' />">Delete Recipe</a>
-   	
-     <% }%>
+
+</c:if>
+
       <div class="restaurant-header">
       <c:if test="${recipe != null}">
         <h1 class="text-brown" id="name"><c:out value="${recipe.food_name}" /></h1>

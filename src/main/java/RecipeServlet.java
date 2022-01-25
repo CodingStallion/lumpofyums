@@ -40,7 +40,7 @@ public class RecipeServlet extends HttpServlet {
 		 private static final String SELECT_ALL_RECIPE = "select * from recipe R INNER JOIN user U ON R.uid = U.id";
 		 private static final String DELETE_RECIPE_SQL = "delete from recipe where food_name = ?;";
 		 private static final String UPDATE_RECIPE_SQL = "update recipe set food_name=?, prep_time =?, cooking_time =?,level =?,description =?,ingredients =?,preparation =? , uid =? where food_name =? ;";
-		 
+		 private static final String SELECT_RECIPE_BY_USER ="select food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, username from recipe R INNER JOIN user U ON R.uid = U.id where username =?";
 		 
 	//Step 3: Implement the getConnection method which facilitates connection to the database via JDBC
 		  protected Connection getConnection() {
@@ -75,7 +75,7 @@ public class RecipeServlet extends HttpServlet {
 		// Step 4: Depending on the request servlet path, determine the function to
 		// invoke using the follow switch statement.
 		String action = request.getServletPath();
-
+		
 		 try {
 		 switch (action) {
 		 case "/RecipeServlet/recipe":
@@ -120,7 +120,6 @@ public class RecipeServlet extends HttpServlet {
 				String preparation = rs.getString("preparation");
 				int uid = rs.getInt("uid");
 				String username = rs.getString("username");
-
 				recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation,
 						uid, username));
 			}
@@ -161,16 +160,19 @@ public class RecipeServlet extends HttpServlet {
 		 String preparation = rs.getString("preparation");
 		 int uid = rs.getInt("uid");
 		 String username= rs.getString("username");
+	
 		 existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, username);
-
+		 
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		// Step 5: Set existingUser to request and serve up the userEdit form
+		
 		request.setAttribute("recipe", existingRecipe);
 		request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
 	}
+
 
 	
 	private void showRecipeEditForm(HttpServletRequest request, HttpServletResponse response)
@@ -267,7 +269,6 @@ public class RecipeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 
 		doGet(request, response);
 	}

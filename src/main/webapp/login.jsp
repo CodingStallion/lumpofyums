@@ -38,11 +38,11 @@ crossorigin="anonymous">
           <form id="login-form" class="card-form bg-orange" action="LoginServlet" method="post"> 
             <div class="input-group">
               <label for="username">Username</label>
-              <input type="text" placeholder="Username" name="username" />
+              <input required type="text" placeholder="Username" name="username" />
             </div>
             <div class="input-group">
               <label for="password">Password</label>
-              <input type="password" placeholder="Password" name="password" />
+              <input required type="password" placeholder="Password" name="password" />
             </div>
             <div>
               <input type="submit" value="Continue" class="btn" />

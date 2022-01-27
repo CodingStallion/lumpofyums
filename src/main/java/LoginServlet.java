@@ -59,6 +59,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("logUser1", user.getUserName());
             response.sendRedirect("account.jsp");
         }else{
+    		response.sendRedirect("http://localhost:8090/lumpofyums/login.jsp");
             System.out.println("user not found");
 		doGet(request, response);
 	}

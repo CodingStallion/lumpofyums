@@ -28,6 +28,7 @@ import javax.servlet.RequestDispatcher;
 public class RecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
 	// Step 1: Prepare list of variables used for database connections
 	private String jdbcURL = "jdbc:mysql://localhost:3306/lump_of_yums";
 	private String jdbcUsername = "root";
@@ -66,6 +67,7 @@ public class RecipeServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -99,6 +101,8 @@ public class RecipeServlet extends HttpServlet {
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
+		
+
 	}
 
 	// Step 5: listUsers function to connect to the database and retrieve all users
@@ -122,7 +126,6 @@ public class RecipeServlet extends HttpServlet {
 				String preparation = rs.getString("preparation");
 				int uid = rs.getInt("uid");
 				String username = rs.getString("username");
-
 				recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation,
 						uid, username));
 			}
@@ -139,6 +142,7 @@ public class RecipeServlet extends HttpServlet {
 	// method to get parameter, query database for existing user data and redirect
 	// to user edit page
 	private void showRecipe(HttpServletRequest request, HttpServletResponse response)
+
 			throws SQLException, ServletException, IOException {
 
 		// get parameter passed in the URL
@@ -164,16 +168,18 @@ public class RecipeServlet extends HttpServlet {
 				String username = rs.getString("username");
 				existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients,
 						preparation, uid, username);
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		// Step 5: Set existingUser to request and serve up the userEdit form
+		
 		request.setAttribute("recipe", existingRecipe);
 		request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
 	}
 
+
+	
 	private void showRecipeEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 

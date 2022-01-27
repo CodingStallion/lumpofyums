@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,10 +51,12 @@ public class LoginServlet extends HttpServlet {
         
         UserDatabase db =  new UserDatabase(ConnectionPro.getConnection());
         User user = db.login(logusername, logpass);
+      
         
         if(user!=null){
             HttpSession session = request.getSession();
             session.setAttribute("logUser", user);
+            session.setAttribute("logUser1", user.getUserName());
             response.sendRedirect("account.jsp");
         }else{
     		response.sendRedirect("http://localhost:8090/lumpofyums/login.jsp");

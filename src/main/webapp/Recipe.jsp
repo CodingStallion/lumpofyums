@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="lumpofyums.User"%>
+
+<%@page import="lumpofyums.Recipe"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,10 +22,7 @@ User user = (User) session.getAttribute("logUser");
 if (user == null) {
 	response.sendRedirect("index.jsp");
 }
-%>
-<%
 
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -66,13 +66,18 @@ if (user == null) {
 		%>
 
 
-		<a class="btn" style="float: right; color: white;"
-			href="edit?food_name=<c:out value='${recipe.food_name}' />">Edit
-			Recipe</a> <a class="btn"
-			style="float: right; margin-right: 10px; color: white;"
-			href="delete?food_name=<c:out value='${recipe.food_name}' />">Delete
-			Recipe</a>
+           <%
+           String userName = (String) session.getAttribute("logUser1");
+         
+            %>
+            
+      
+  <c:if test="${recipe.username == logUser1}">
+    <a class="btn" style="float: right; color:white;" href="edit?food_name=<c:out value='${recipe.food_name}' />">Edit Recipe</a>
+    
+	 <a class="btn" style="float: right; margin-right: 10px; color:white;" href="delete?food_name=<c:out value='${recipe.food_name}' />">Delete Recipe</a>
 
+</c:if>
 		<%
 		}
 		%>
@@ -219,5 +224,6 @@ if (user == null) {
 		</h4>
 		<span>&copy; Lump Of Yums 2022</span>
 	</footer>
+
 </body>
 </html>

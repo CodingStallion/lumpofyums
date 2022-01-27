@@ -24,25 +24,31 @@
 <title>Lump Of Yums</title>
 </head>
 <body>
-<!--  Lump Of Yums Update 1 -->
-    <nav class="nav-wrapper">
-    
-      <a href="<%=request.getContextPath()%>/RecipeServlet/home" class="brand-logo">Lump Of Yums</a>
-      <ul class="nav-list">
-        <li class="active"><a href="<%=request.getContextPath()%>/RecipeServlet/home">Recipes</a></li>
-            <%
-                                   
-                if (session.getAttribute("logUser") == null) {
-            %>
-        <li><a href="<%=request.getContextPath()%>/login.jsp">Sign in</a></li>
-        <li><a href="<%=request.getContextPath()%>/register.jsp">Sign up</a></li>
-        <% } else {
-         %>
-         	<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
-            <li><a href="<%=request.getContextPath()%>/LogoutServlet">Logout</a></li>
-        <% }%>
-      </ul>
-    </nav>
+	<!--  Lump Of Yums Update 1 -->
+	<nav class="nav-wrapper">
+
+		<a href="<%=request.getContextPath()%>/RecipeServlet/home"
+			class="brand-logo">Lump Of Yums</a>
+		<ul class="nav-list">
+			<li class="active"><a
+				href="<%=request.getContextPath()%>/RecipeServlet/home">Recipes</a></li>
+			<%
+			if (session.getAttribute("logUser") == null) {
+			%>
+			<li><a href="<%=request.getContextPath()%>/login.jsp">Sign
+					in</a></li>
+			<li><a href="<%=request.getContextPath()%>/register.jsp">Sign
+					up</a></li>
+			<%
+			} else {
+			%>
+			<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
+			<li><a href="<%=request.getContextPath()%>/LogoutServlet">Logout</a></li>
+			<%
+			}
+			%>
+		</ul>
+	</nav>
 
 
 	<section class="bg-orange main-section">
@@ -75,9 +81,19 @@
 							<h6>
 								<c:out value="Posted by: ${recipe.username}" />
 							</h6>
+							<%
+							if (session.getAttribute("logUser") != null) {
+							%>
 							<a class="btn"
 								href="recipe?food_name=<c:out value='${recipe.food_name}' />">More
 								info</a>
+							<%
+							} else {
+							%>
+							<a class="btn" href="http://localhost:8090/lumpofyums/login.jsp">Log in to view more </a>
+							<%
+							}
+							%>
 						</div>
 					</li>
 				</c:forEach>

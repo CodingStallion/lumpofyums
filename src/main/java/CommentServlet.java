@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import lumpofyums.Comments;
 
@@ -30,7 +32,7 @@ public class CommentServlet extends HttpServlet {
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENT"
 			+ " (name, password, email, language) VALUES " + " (?, ?, ?);";
 	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from recipe R INNER JOIN user U ON C.uid = U.id where comment =?";
-	private static final String SELECT_ALL_COMMENT = "SELECT * FROM comment WHERE recipe_name = ?;";
+	private static final String SELECT_ALL_COMMENT = "select * from comment C INNER JOIN user U ON C.uid = U.id";
 	private static final String DELETE_COMMENT_SQL = "delete from comment where recipe_name = ?;";
 	private static final String UPDATE_COMMENT_SQL = "update comment set name = ?,password= ?, email =?,language =? where name = ?;";
 	private static final long serialVersionUID = 1L;
@@ -38,7 +40,7 @@ public class CommentServlet extends HttpServlet {
 	protected Connection getConnection() {
 		Connection connection = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,28 +97,31 @@ public class CommentServlet extends HttpServlet {
 	// records
 	private void listComment(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		String recipe_name = request.getParameter("food_name");
 		List<Comments> comments = new ArrayList<>();
 		try (Connection connection = getConnection();
 				// Step 5.1: Create a statement using connection object
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_COMMENT);) {
-			preparedStatement.setString(1, recipe_name);
+			
 			// Step 5.2: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
 			// Step 5.3: Process the ResultSet object.
 			while (rs.next()) {
 				String comment = rs.getString("comment");
-				int uid = rs.getInt("uid");
 				String username = rs.getString("username");
-				comments.add(new Comments(comment, uid, username));
+				int uid = rs.getInt("uid");
+				String recipe_name = rs.getString("recipe_name");
+				Timestamp created_at = rs.getTimestamp("created_at");
+				comments.add(new Comments(comment, username, uid, recipe_name, created_at));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		// Step 5.4: Set the users list into the listUsers attribute to be pass to the
 		// recipe.jsp
-		request.setAttribute("listComment", comments);
-		request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
+		
+
+           request.setAttribute("listComment", comments);
+		request.getRequestDispatcher("/Comment.jsp").forward(request, response);
 	}
 
 	// method to delete comment

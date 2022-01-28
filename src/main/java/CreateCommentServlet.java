@@ -62,7 +62,7 @@ public class CreateCommentServlet extends HttpServlet {
 		// username and password accordingly using the phpMyAdmin > User Account
 		// dashboard
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lump_of_yums", "root",
 					"password");
 			// Step 4: implement the sql query using prepared statement

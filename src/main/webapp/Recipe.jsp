@@ -70,7 +70,9 @@ if (user == null) {
            <%
            String userName = (String) session.getAttribute("logUser1");
          
+         
             %>
+        
             
       
   <c:if test="${recipe.username == logUser1}">
@@ -116,18 +118,18 @@ if (user == null) {
 				<div class="left" style="width: 70%;">
 					<div>
 
-						<i class="material-icons">description</i> <span class="address"><c:out
+						<i class="material-icons">description</i> <span class="address"><b>Description: </b><br /><c:out
 								value="${recipe.description}" /></span>
 					</div>
 					<div>
-						<i class="material-icons">menu_book</i> <span id="cuisine"><c:out
+						<i class="material-icons">menu_book</i> <span id="cuisine"><b>Ingredients: </b><br /><c:out
 								value="${recipe.ingredients}" /></span>
 					</div>
 
 				</div>
 				<div class="left">
 					<div>
-						<i class="material-icons">menu_book</i> <span id="cuisine"><c:out
+						<i class="material-icons">soup_kitchen</i> <span id="cuisine"><b>Directions: </b><br /><c:out
 								value="${recipe.preparation}" /></span>
 					</div>
 
@@ -168,7 +170,7 @@ if (user == null) {
 
 			</div>
 			<div class="mb-small" style="display: none;">
-				<input value="${recipe.food_name}" name="recipe_name" />
+				<input type="text" value="${recipe.food_name}" name="recipe_name" />
 			</div>
 
 			<input type="submit" class="btn" value="Submit" />
@@ -180,42 +182,8 @@ if (user == null) {
 		%>
 
 		<h1 class="text-brown mb-small" style="margin-top: 30px;">Comments</h1>
-
-		<div class="card" style="width: 100%">
-			<div class="card-body">
-				<h4 class="card-title" style="display: inline;"></h4>
-				<%
-				if (session.getAttribute("logUser") != null) {
-				%>
-
-				<div style="display: inline;">
-					<i class="material-icons btn-icon" id="btn-edit">edit</i> <i
-						class="material-icons btn-icon" id="btn-delete">delete</i>
-				</div>
-				<%
-				}
-				%>
-
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Comment</th>
-							<th>Password</th>
-						</tr>
-					</thead>
-					<!-- Pass in the list of users receive via the Servlet’s response to a loop -->
-					<tbody>
-						<c:forEach var="comments" items="${listComment}">
-							<!-- For each user in the database, display their information accordingly -->
-							<tr>
-								<td><c:out value="${comments.comment}" /></td>
-								<!-- For each user in the database, Edit/Delete buttons which invokes the edit/delete functions -->
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
+		
+ <a class="btn" href="<%=request.getContextPath()%>/CommentServlet/list">View Comments</a>
 
 	</section>
 

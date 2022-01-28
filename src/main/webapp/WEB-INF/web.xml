@@ -14,9 +14,15 @@
 		<servlet-class>RecipeServlet</servlet-class>
 
 	</servlet>
-		<servlet>
+	
+	<servlet>
 		<servlet-name>UserServlet</servlet-name>
 		<servlet-class>UserServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>CommentServlet</servlet-name>
+		<servlet-class>CommentServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
@@ -35,6 +41,11 @@
 		<url-pattern>/UserServlet/delete</url-pattern>
 		<url-pattern>/UserServlet/edit</url-pattern>
 		<url-pattern>/UserServlet/update</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>CommentServlet</servlet-name>
+		<url-pattern>/CommentServlet/list</url-pattern>
+		<url-pattern>/CommentServlet/delete</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>

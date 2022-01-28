@@ -43,7 +43,7 @@ public class RecipeServlet extends HttpServlet {
 	private static final String SELECT_ALL_RECIPE = "select * from recipe R INNER JOIN user U ON R.uid = U.id";
 	private static final String DELETE_RECIPE_SQL = "delete from recipe where food_name = ?;";
 	private static final String UPDATE_RECIPE_SQL = "update recipe set food_name=?, prep_time =?, cooking_time =?,level =?,description =?,ingredients =?,preparation =? , uid =? where food_name =? ;";
-
+	
 	// Step 3: Implement the getConnection method which facilitates connection to
 	// the database via JDBC
 	protected Connection getConnection() {
@@ -134,6 +134,7 @@ public class RecipeServlet extends HttpServlet {
 		}
 		// Step 5.4: Set the users list into the listUsers attribute to be pass to the
 		// userManagement.jsp
+		
 		request.setAttribute("listUsers", recipes);
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
@@ -173,7 +174,9 @@ public class RecipeServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		// Step 5: Set existingUser to request and serve up the userEdit form
-		
+	    HttpSession session = request.getSession();
+        session.setAttribute("food_name", existingRecipe.getFood_name());
+        session.setAttribute("username", existingRecipe.getUsername());
 		request.setAttribute("recipe", existingRecipe);
 		request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
 	}

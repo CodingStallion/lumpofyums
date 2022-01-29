@@ -20,7 +20,7 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
-<title>Insert title here</title>
+<title>Lump Of Yums</title>
 </head>
 <body>	
   
@@ -100,7 +100,7 @@
                 if (session.getAttribute("logUser") != null) {
             %>
              <c:if test="${comments.username == logUser1}">
-            <div style="display:inline;"><i class="material-icons btn-icon" id="btn-edit">edit</i><a href="delete?recipe_name=<c:out value='${comments.recipe_name}' />"><i class="material-icons btn-icon" id="btn-delete">delete</i></a></div>
+            <div style="display:inline;"><i class="material-icons btn-icon" id="btn-edit">edit</i><a href="delete?created_at=<c:out value='${comments.created_at}' />"><i class="material-icons btn-icon" id="btn-delete">delete</i></a></div>
             </c:if>
                <% }%>
         

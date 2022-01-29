@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lumpofyums.Comments;
+import lumpofyums.Recipe;
 
 /**
  * Servlet implementation class CommentServlet
@@ -31,9 +32,9 @@ public class CommentServlet extends HttpServlet {
 	// database
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENT"
 			+ " (name, password, email, language) VALUES " + " (?, ?, ?);";
-	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from recipe R INNER JOIN user U ON C.uid = U.id where comment =?";
+	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from recipe R INNER JOIN user U ON C.uid = U.id where created_time =?";
 	private static final String SELECT_ALL_COMMENT = "select * from comment C INNER JOIN user U ON C.uid = U.id";
-	private static final String DELETE_COMMENT_SQL = "delete from comment where recipe_name = ?;";
+	private static final String DELETE_COMMENT_SQL = "delete from comment where created_at = ?;";
 	private static final String UPDATE_COMMENT_SQL = "update comment set name = ?,password= ?, email =?,language =? where name = ?;";
 	private static final long serialVersionUID = 1L;
 
@@ -74,12 +75,15 @@ public class CommentServlet extends HttpServlet {
 				deleteComment(request, response);
 				break;
 			}
-		} catch (SQLException ex) {
-			throw new ServletException(ex);
-		}
+		}catch(
 
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	SQLException ex)
+	{
+		throw new ServletException(ex);
+	}
+
+	// TODO Auto-generated method stub
+	response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -101,7 +105,7 @@ public class CommentServlet extends HttpServlet {
 		try (Connection connection = getConnection();
 				// Step 5.1: Create a statement using connection object
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_COMMENT);) {
-			
+
 			// Step 5.2: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
 			// Step 5.3: Process the ResultSet object.
@@ -118,26 +122,62 @@ public class CommentServlet extends HttpServlet {
 		}
 		// Step 5.4: Set the users list into the listUsers attribute to be pass to the
 		// recipe.jsp
-		
 
-           request.setAttribute("listComment", comments);
+		request.setAttribute("listComment", comments);
 		request.getRequestDispatcher("/Comment.jsp").forward(request, response);
 	}
-
+//edited by eithan: took in created_at parameters instead of recipe_name since created_at is more unique.
 	// method to delete comment
 	private void deleteComment(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 		// Step 1: Retrieve value from the request
-		String recipe_name = request.getParameter("recipe_name");
+		String created_at = request.getParameter("created_at");
 		// Step 2: Attempt connection with database and execute delete user SQL query
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_COMMENT_SQL);) {
-			statement.setString(1, recipe_name);
+			statement.setString(1, created_at);
 			int i = statement.executeUpdate();
 		}
 		// Step 3: redirect back to UserServlet dashboard (note: remember to change the
 		// url to your project name)
 		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
 	}
+
+	/*private void showCommentEditForm(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, ServletException, IOException {
+
+		// get parameter passed in the URL
+		String food_name = request.getParameter("food_name");
+		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "");
+		// Step 1: Establishing a Connection
+		try (Connection connection = getConnection();
+				// Step 2:Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COMMENT_BY_ID);) {
+			preparedStatement.setString(1, food_name);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+			// Step 4: Process the ResultSet object
+			while (rs.next()) {
+				food_name = rs.getString("food_name");
+				int prep_time = rs.getInt("prep_time");
+				int cooking_time = rs.getInt("cooking_time");
+				String level = rs.getString("level");
+				String description = rs.getString("description");
+				String ingredients = rs.getString("ingredients");
+				String preparation = rs.getString("preparation");
+				int uid = rs.getInt("uid");
+				String username = rs.getString("username");
+				existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients,
+						preparation, uid, username);
+
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// Step 5: Set existingUser to request and serve up the userEdit form
+		request.setAttribute("edit", existingRecipe);
+		request.getRequestDispatcher("/edit_recipe.jsp").forward(request, response);
+
+	}*/
 
 }

@@ -100,7 +100,7 @@
                 if (session.getAttribute("logUser") != null) {
             %>
              <c:if test="${comments.username == logUser1}">
-            <div style="display:inline;"><i class="material-icons btn-icon" id="btn-edit">edit</i><a href="delete?created_at=<c:out value='${comments.created_at}' />"><i class="material-icons btn-icon" id="btn-delete">delete</i></a></div>
+           <div style="display:inline;"><a href="edit?created_at=<c:out value='${comments.created_at}' />"><i class="material-icons btn-icon" id="btn-edit">edit</i></a><a href="delete?created_at=<c:out value='${comments.created_at}' />"><i class="material-icons btn-icon" id="btn-delete">delete</i></a></div>
             </c:if>
                <% }%>
         

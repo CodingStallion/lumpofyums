@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lumpofyums.CommentsDetails;
 import lumpofyums.Comments;
 import lumpofyums.Recipe;
 
@@ -74,6 +75,11 @@ public class CommentServlet extends HttpServlet {
 			case "/CommentServlet/delete":
 				deleteComment(request, response);
 				break;
+			case "/CommentServlet/edit":
+				showCommentEditForm(request, response);
+				break;
+				
+				
 			}
 		}catch(
 
@@ -143,41 +149,75 @@ public class CommentServlet extends HttpServlet {
 		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
 	}
 
-	/*private void showCommentEditForm(HttpServletRequest request, HttpServletResponse response)
+	private void showCommentEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-
+		String created_at = request.getParameter("created_at");
 		// get parameter passed in the URL
-		String food_name = request.getParameter("food_name");
-		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "");
+		CommentsDetails existingComment = new CommentsDetails ("", 1, "");
 		// Step 1: Establishing a Connection
 		try (Connection connection = getConnection();
 				// Step 2:Create a statement using connection object
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COMMENT_BY_ID);) {
-			preparedStatement.setString(1, food_name);
+			preparedStatement.setString(1, created_at);
 			// Step 3: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
 			// Step 4: Process the ResultSet object
 			while (rs.next()) {
-				food_name = rs.getString("food_name");
-				int prep_time = rs.getInt("prep_time");
-				int cooking_time = rs.getInt("cooking_time");
-				String level = rs.getString("level");
-				String description = rs.getString("description");
-				String ingredients = rs.getString("ingredients");
-				String preparation = rs.getString("preparation");
+				String comment = rs.getString("comment");
+				String recipe_name = rs.getString("recipe_name");
 				int uid = rs.getInt("uid");
-				String username = rs.getString("username");
-				existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients,
-						preparation, uid, username);
+				existingComment = new CommentsDetails( comment, uid ,recipe_name);
 
 			}
+			
+			
+			
+			
+			
+			
+			
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		// Step 5: Set existingUser to request and serve up the userEdit form
-		request.setAttribute("edit", existingRecipe);
-		request.getRequestDispatcher("/edit_recipe.jsp").forward(request, response);
+		request.setAttribute("edit", existingComment);
+		request.getRequestDispatcher("/editComments.jsp").forward(request, response);
 
-	}*/
+	}
+	
+	private void updateComment(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException {
+		// Step 1: Retrieve value from the request
+		String food_name = request.getParameter("food_name");
+		int prep_time = Integer.parseInt(request.getParameter("prep_time"));
+		int cooking_time = Integer.parseInt(request.getParameter("cooking_time"));
+		String level = request.getParameter("level");
+		String description = request.getParameter("description");
+		String ingredients = request.getParameter("ingredients");
+		String preparation = request.getParameter("preparation");
+		int uid = Integer.parseInt(request.getParameter("uid"));
+		String oriname = request.getParameter("oriname");
+
+		// Step 2: Attempt connection with database and execute update user SQL query
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(UPDATE_COMMENT_SQL);) {
+
+			statement.setString(1, food_name);
+			statement.setInt(2, prep_time);
+			statement.setInt(3, cooking_time);
+			statement.setString(4, level);
+			statement.setString(5, description);
+			statement.setString(6, ingredients);
+			statement.setString(7, preparation);
+			statement.setInt(8, uid);
+			statement.setString(9, oriname);
+			int i = statement.executeUpdate();
+		}
+		// Step 3: redirect back to UserServlet (note: remember to change the url to
+		// your project name)
+		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
+	}	
+	
 
 }

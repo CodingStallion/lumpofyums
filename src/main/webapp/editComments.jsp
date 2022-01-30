@@ -54,18 +54,23 @@ crossorigin="anonymous">
       <div class="restaurant-reviews" id="authenticated-reviews">
         <form id="review-form" action="update" method="post">
         
-              <h2 class="text-brown mb-small">Recipe name</h2> 
+              <h2 class="text-brown mb-small">Edit Comment</h2> 
     		<div class="mb-small">
               <input type="text" placeholder="Comment" name="comment" value="<c:out value="${edit.comment}" />"/> 
             </div>
             
              	<div class="mb-small">
-              <input type="text" placeholder="Recipe name" name="recipe_name" value="<c:out value="${edit.recipe_name}" />"/> 
+              <input type="hidden" placeholder="Recipe name" name="recipe_name" value="<c:out value="${edit.recipe_name}" />"/> 
             </div>
           
             	<div class="mb-small">
               <input type="hidden"  name="uid" value="<c:out value="${edit.uid}" />" /> 
             </div>
+            
+            <div class="mb-small">
+              <input type="text"  name="created_at" value="<c:out value="${edit.created_at}" />" /> 
+            </div>
+ 
  
     
           <input type="submit" class="btn" value="Submit" />

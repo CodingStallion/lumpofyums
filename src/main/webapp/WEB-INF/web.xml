@@ -47,6 +47,7 @@
 		<url-pattern>/CommentServlet/list</url-pattern>
 		<url-pattern>/CommentServlet/delete</url-pattern>
 			<url-pattern>/CommentServlet/edit</url-pattern>
+			<url-pattern>/CommentServlet/update</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>

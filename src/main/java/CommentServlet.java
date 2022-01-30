@@ -36,7 +36,7 @@ public class CommentServlet extends HttpServlet {
 	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from comment where created_at =?";
 	private static final String SELECT_ALL_COMMENT = "select * from comment C INNER JOIN user U ON C.uid = U.id";
 	private static final String DELETE_COMMENT_SQL = "delete from comment where created_at = ?;";
-	private static final String UPDATE_COMMENT_SQL = "update comment set name = ?,password= ?, email =?,language =? where name = ?;";
+	private static final String UPDATE_COMMENT_SQL = "update comment set comment  = ?,  recipe_name =?, uid =? where created_at = ?;";
 	private static final long serialVersionUID = 1L;
 
 	protected Connection getConnection() {
@@ -78,6 +78,10 @@ public class CommentServlet extends HttpServlet {
 			case "/CommentServlet/edit":
 				showCommentEditForm(request, response);
 				break;
+			case "/CommentServlet/update":
+				updateComment(request, response);
+				break;
+				
 				
 				
 			}
@@ -166,16 +170,14 @@ public class CommentServlet extends HttpServlet {
 				String comment = rs.getString("comment");
 				String recipe_name = rs.getString("recipe_name");
 				int uid = rs.getInt("uid");
+				
+				
 				existingComment = new CommentsDetails( comment, uid ,recipe_name);
 
 			}
 			
 			
-			
-			
-			
-			
-			
+		
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -189,30 +191,22 @@ public class CommentServlet extends HttpServlet {
 	private void updateComment(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 		// Step 1: Retrieve value from the request
-		String food_name = request.getParameter("food_name");
-		int prep_time = Integer.parseInt(request.getParameter("prep_time"));
-		int cooking_time = Integer.parseInt(request.getParameter("cooking_time"));
-		String level = request.getParameter("level");
-		String description = request.getParameter("description");
-		String ingredients = request.getParameter("ingredients");
-		String preparation = request.getParameter("preparation");
+		String comment = request.getParameter("comment");		
+		String recipe_name = request.getParameter("recipe_name");
 		int uid = Integer.parseInt(request.getParameter("uid"));
-		String oriname = request.getParameter("oriname");
-
+	
+	
 		// Step 2: Attempt connection with database and execute update user SQL query
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE_COMMENT_SQL);) {
 
-			statement.setString(1, food_name);
-			statement.setInt(2, prep_time);
-			statement.setInt(3, cooking_time);
-			statement.setString(4, level);
-			statement.setString(5, description);
-			statement.setString(6, ingredients);
-			statement.setString(7, preparation);
-			statement.setInt(8, uid);
-			statement.setString(9, oriname);
+			statement.setString(1, comment);
+			statement.setString(2, recipe_name);
+			statement.setInt(3, uid);
+		
 			int i = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		}
 		// Step 3: redirect back to UserServlet (note: remember to change the url to
 		// your project name)

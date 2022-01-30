@@ -1,11 +1,13 @@
 package lumpofyums;
 
+
 public class CommentsDetails {
 	
 	
 	protected String comment;
 	protected int uid;
 	protected String recipe_name;
+	
 	public String getComment() {
 		return comment;
 	}
@@ -18,6 +20,8 @@ public class CommentsDetails {
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
+	
+	
 	public String getRecipe_name() {
 		return recipe_name;
 	}
@@ -29,7 +33,7 @@ public class CommentsDetails {
 		this.comment = comment;
 		this.uid = uid;
 		this.recipe_name = recipe_name;
-	}
+		
 	
 
-}
+}}

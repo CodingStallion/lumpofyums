@@ -33,7 +33,7 @@ public class CommentServlet extends HttpServlet {
 	// database
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENT"
 			+ " (name, password, email, language) VALUES " + " (?, ?, ?);";
-	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from recipe R INNER JOIN user U ON C.uid = U.id where created_time =?";
+	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from comment R INNER JOIN user U ON C.uid = U.id where created_at =?";
 	private static final String SELECT_ALL_COMMENT = "select * from comment C INNER JOIN user U ON C.uid = U.id";
 	private static final String DELETE_COMMENT_SQL = "delete from comment where created_at = ?;";
 	private static final String UPDATE_COMMENT_SQL = "update comment set name = ?,password= ?, email =?,language =? where name = ?;";

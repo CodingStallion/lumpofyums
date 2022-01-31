@@ -179,6 +179,7 @@ public class RecipeServlet extends HttpServlet {
         session.setAttribute("username", existingRecipe.getUsername());
 		request.setAttribute("recipe", existingRecipe);
 		request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
+		
 	}
 
 

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lumpofyums.CommentsDetails;
 import lumpofyums.Comments;
 import lumpofyums.Recipe;
 
@@ -32,10 +33,10 @@ public class CommentServlet extends HttpServlet {
 	// database
 	private static final String INSERT_COMMENT_SQL = "INSERT INTO COMMENT"
 			+ " (name, password, email, language) VALUES " + " (?, ?, ?);";
-	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from recipe R INNER JOIN user U ON C.uid = U.id where created_time =?";
+	private static final String SELECT_COMMENT_BY_ID = "select comment,recipe_name,uid from comment where id =?";
 	private static final String SELECT_ALL_COMMENT = "select * from comment C INNER JOIN user U ON C.uid = U.id";
-	private static final String DELETE_COMMENT_SQL = "delete from comment where created_at = ?;";
-	private static final String UPDATE_COMMENT_SQL = "update comment set name = ?,password= ?, email =?,language =? where name = ?;";
+	private static final String DELETE_COMMENT_SQL = "delete from comment where id = ?;";
+	private static final String UPDATE_COMMENT_SQL = "update comment set comment  = ?,  recipe_name =?, uid =? where id = ?;";
 	private static final long serialVersionUID = 1L;
 
 	protected Connection getConnection() {
@@ -74,16 +75,22 @@ public class CommentServlet extends HttpServlet {
 			case "/CommentServlet/delete":
 				deleteComment(request, response);
 				break;
+			case "/CommentServlet/edit":
+				showCommentEditForm(request, response);
+				break;
+			case "/CommentServlet/update":
+				updateComment(request, response);
+				break;
+
 			}
-		}catch(
+		} catch (
 
-	SQLException ex)
-	{
-		throw new ServletException(ex);
-	}
+		SQLException ex) {
+			throw new ServletException(ex);
+		}
 
-	// TODO Auto-generated method stub
-	response.getWriter().append("Served at: ").append(request.getContextPath());
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -112,10 +119,12 @@ public class CommentServlet extends HttpServlet {
 			while (rs.next()) {
 				String comment = rs.getString("comment");
 				String username = rs.getString("username");
+				// comment by eithan: added get method for int Id
+				int id = rs.getInt("id");
 				int uid = rs.getInt("uid");
 				String recipe_name = rs.getString("recipe_name");
 				Timestamp created_at = rs.getTimestamp("created_at");
-				comments.add(new Comments(comment, username, uid, recipe_name, created_at));
+				comments.add(new Comments(id, comment, username, uid, recipe_name, created_at));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -126,16 +135,17 @@ public class CommentServlet extends HttpServlet {
 		request.setAttribute("listComment", comments);
 		request.getRequestDispatcher("/Comment.jsp").forward(request, response);
 	}
-//edited by eithan: took in created_at parameters instead of recipe_name since created_at is more unique.
+
+//edited by eithan: took in id parameters instead of recipe_name since id is more unique.
 	// method to delete comment
 	private void deleteComment(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 		// Step 1: Retrieve value from the request
-		String created_at = request.getParameter("created_at");
+		int id = Integer.parseInt(request.getParameter("id"));
 		// Step 2: Attempt connection with database and execute delete user SQL query
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_COMMENT_SQL);) {
-			statement.setString(1, created_at);
+			statement.setInt(1, id);
 			int i = statement.executeUpdate();
 		}
 		// Step 3: redirect back to UserServlet dashboard (note: remember to change the
@@ -143,41 +153,57 @@ public class CommentServlet extends HttpServlet {
 		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
 	}
 
-	/*private void showCommentEditForm(HttpServletRequest request, HttpServletResponse response)
+	private void showCommentEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-
+		// comment by eithan: get parameter to be placed in URL
+		int id = Integer.parseInt(request.getParameter("id"));
 		// get parameter passed in the URL
-		String food_name = request.getParameter("food_name");
-		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "");
+		CommentsDetails existingComment = new CommentsDetails(1, "", 1, "");
 		// Step 1: Establishing a Connection
 		try (Connection connection = getConnection();
 				// Step 2:Create a statement using connection object
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COMMENT_BY_ID);) {
-			preparedStatement.setString(1, food_name);
+			preparedStatement.setInt(1, id);
 			// Step 3: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
 			// Step 4: Process the ResultSet object
 			while (rs.next()) {
-				food_name = rs.getString("food_name");
-				int prep_time = rs.getInt("prep_time");
-				int cooking_time = rs.getInt("cooking_time");
-				String level = rs.getString("level");
-				String description = rs.getString("description");
-				String ingredients = rs.getString("ingredients");
-				String preparation = rs.getString("preparation");
+				String comment = rs.getString("comment");
+				String recipe_name = rs.getString("recipe_name");
 				int uid = rs.getInt("uid");
-				String username = rs.getString("username");
-				existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients,
-						preparation, uid, username);
-
+				existingComment = new CommentsDetails(id, comment, uid, recipe_name);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		// Step 5: Set existingUser to request and serve up the userEdit form
-		request.setAttribute("edit", existingRecipe);
-		request.getRequestDispatcher("/edit_recipe.jsp").forward(request, response);
+		request.setAttribute("edit", existingComment);
+		request.getRequestDispatcher("/editComments.jsp").forward(request, response);
 
-	}*/
+	}
+
+	private void updateComment(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException {
+		// Step 1: Retrieve value from the request
+		String comment = request.getParameter("comment");
+		String recipe_name = request.getParameter("recipe_name");
+		// comment by eithan: request ID parameter to be placed into Query value "4"
+		int id = Integer.parseInt(request.getParameter("id"));
+		int uid = Integer.parseInt(request.getParameter("uid"));
+		// Step 2: Attempt connection with database and execute update user SQL query
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(UPDATE_COMMENT_SQL);) {
+			statement.setString(1, comment);
+			statement.setString(2, recipe_name);
+			statement.setInt(3, uid);
+			statement.setInt(4, id);
+			int i = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// Step 3: redirect back to UserServlet (note: remember to change the url to
+		// your project name)
+		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
+	}
 
 }

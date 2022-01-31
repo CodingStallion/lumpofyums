@@ -4,13 +4,14 @@ import java.sql.Timestamp;
 public class Comments {
 	protected int id;
 	
-	public Comments(String comment, String username, int uid, String recipe_name, Timestamp created_at) {
+	public Comments(int id,String comment, String username, int uid, String recipe_name, Timestamp created_at) {
 		super();
 		this.comment = comment;
 		this.username = username;
 		this.uid = uid;
 		this.recipe_name = recipe_name;
 		this.created_at =  created_at;
+		this.id = id;
 		
 	}
 	public int getId() {

@@ -64,24 +64,55 @@
 		<div class="restaurant-reviews" id="authenticated-reviews">
 			<form id="review-form" action="update" method="post">
 
-				<h2 class="text-brown mb-small">Edit Comment</h2>
+				<h2 class="text-brown mb-small">Edit User</h2>
 				<div class="mb-small">
-					<input type="text" placeholder="Comment" name="comment"
-						value="<c:out value="${edit.comment}" />" />
+					<input type="text" placeholder="Username" name="username"
+						value="<c:out value="${user.username}" />" />
 				</div>
 
 				<div class="mb-small">
-					<input type="hidden"  name="recipe_name"
-						value="<c:out value="${edit.recipe_name}" />" />
+					<input type="text"  name="email"
+						value="<c:out value="${user.email}" />" />
+						
 				</div>
+				<div class="mb-small">
+					<input type="text"  name="password"
+						value="<c:out value="${user.password}" />" />
+				</div>
+				
+				<div class="mb-small">
+					<input type="text"  name="address"
+						value="<c:out value="${user.address}" />" />
+				</div>
+				<div class="mb-small">
+					<input type="text"  name="first_name"
+						value="<c:out value="${user.first_name}" />" />
+				</div>
+				<div class="mb-small">
+					<input type="text"  name="last_name"
+						value="<c:out value="${user.last_name}" />" />
+				</div>
+				
 
 				<div class="mb-small">
-					<input type="hidden" name="uid"
-						value="<c:out value="${edit.uid}" />" />
+					<input type="text" name="phone"
+						value="<c:out value="${user.phone}" />" />
+						
+						
 				</div>
+				
+			 <div class="input-group">
+              <label for="gender">Gender</label>
+              <select name="gender">
+                <option value="M">M</option>
+                <option value="F">F</option>
+              </select>
+            
+				</div>
+				
 				<div class="mb-small">
 					<input type="hidden" name="id"
-						value="<c:out value="${edit.id}" />" />
+						value="<c:out value="${user.id}" />" />
 				</div>
 				<input type="submit" class="btn" value="Submit" />
 

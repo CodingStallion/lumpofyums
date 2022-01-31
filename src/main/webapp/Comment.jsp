@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +22,9 @@
 	href="${pageContext.request.contextPath}/css/style.css">
 <title>Lump Of Yums</title>
 </head>
-<body>	
-  
-<nav class="nav-wrapper">
+<body>
+
+	<nav class="nav-wrapper">
 
 		<a href="<%=request.getContextPath()%>/RecipeServlet/home"
 			class="brand-logo">Lump Of Yums</a>
@@ -48,21 +48,20 @@
 			%>
 		</ul>
 	</nav>
-<section class="bg-orange main-section">
-   <%
-           String userName = (String) session.getAttribute("logUser1");
-     String foodName = (String) session.getAttribute("food_name");
-     String food_username = (String) session.getAttribute("username");
-         
-            %>
-           
-	
+	<section class="bg-orange main-section">
+		<%
+		String userName = (String) session.getAttribute("logUser1");
+		String foodName = (String) session.getAttribute("food_name");
+		String food_username = (String) session.getAttribute("username");
+		%>
+
+
 		<div class="restaurant-header">
 
-				<h1 class="text-brown" id="name">
-					<c:out value="${food_name}" />
-				</h1>
-		
+			<h1 class="text-brown" id="name">
+				<c:out value="${food_name}" />
+			</h1>
+
 			<div class="restaurant-info">
 				<div class="rating" style="color: black;">
 					Preparation time:
@@ -87,35 +86,48 @@
 		</div>
 
 
-	<h1 class="text-brown mb-small" style="margin-top: 30px;">Comments</h1>
-		
- <c:forEach var="comments" items="${listComment}">
- 
- <c:if test="${comments.recipe_name == food_name}">
-	 			<div class="card" style="width: 100%; margin-bottom: 20px;">
-  <div class="card-body">
-    <h4 class="card-title" style="display:inline;"><c:out value="${comments.username}" /></h4>     
-    <%
-                                   
-                if (session.getAttribute("logUser") != null) {
-            %>
-             <c:if test="${comments.username == logUser1}">
-            <div style="display:inline;"><i class="material-icons btn-icon" id="btn-edit">edit</i><a href="delete?created_at=<c:out value='${comments.created_at}' />"><i class="material-icons btn-icon" id="btn-delete">delete</i></a></div>
-            </c:if>
-               <% }%>
-        
-            
-    <p class="card-text"><c:out value="${comments.created_at}" /></p> 
-    <p class="card-text"><c:out value="${comments.comment}" /></p>
-  </div>
-</div>
+		<h1 class="text-brown mb-small" style="margin-top: 30px;">Comments</h1>
 
-</c:if>
-     </c:forEach>
+		<c:forEach var="comments" items="${listComment}">
+
+			<c:if test="${comments.recipe_name == food_name}">
+
+				<div class="card" style="width: 100%; margin-bottom: 20px;">
+					<div class="card-body">
+						<h4 class="card-title" style="display: inline;">
+							<c:out value="${comments.username}" />
+						</h4>
+						<%
+						if (session.getAttribute("logUser") != null) {
+						%>
+						<c:if test="${comments.username == logUser1}">
+							<div style="display: inline;">
+								<a href="edit?id=<c:out value='${comments.id}' />"><i
+									class="material-icons btn-icon" id="btn-edit">edit</i></a><a
+									href="delete?id=<c:out value='${comments.id}' />"><i
+									class="material-icons btn-icon" id="btn-delete">delete</i></a>
+							</div>
+						</c:if>
+						<%
+						}
+						%>
+
+
+						<p class="card-text">
+							<c:out value="${comments.created_at}" />
+						</p>
+						<p class="card-text">
+							<c:out value="${comments.comment}" />
+						</p>
+					</div>
+				</div>
+
+			</c:if>
+		</c:forEach>
 
 	</section>
-	
-		<footer class="footer">
+
+	<footer class="footer">
 		<h4>
 			<i class="material-icons">dining</i>
 		</h4>

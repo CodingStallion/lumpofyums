@@ -63,21 +63,6 @@
 			</h1>
 
 			<div class="restaurant-info">
-				<div class="rating" style="color: black;">
-					Preparation time:
-					<c:out value="${recipe.prep_time}" />
-					Minutes
-				</div>
-				<div class="price" id="price">
-					Cooking time:
-					<c:out value="${recipe.cooking_time}" />
-					Minutes
-				</div>
-				<div class="price" id="price">
-					Level:
-					<c:out value="${recipe.level}" />
-				</div>
-			</div>
 			<div class="mb-medium">
 				<p class="address">
 					<c:out value="Posted by: ${username}" />

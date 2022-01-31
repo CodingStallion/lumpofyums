@@ -100,7 +100,7 @@ if (user == null) {
 				style="float: left;color: white;"
 				href="UserServlet/delete?id=<%=user.getId()%>">Deactivate</a>
 				<a id="deactivateBtn" class="btn"
-				style="float: left;color: white;"
+				style="float: left; margin-left: 10px;color: white;"
 				href="UserServlet/edit?id=<%=user.getId()%>">edit</a>
 		</div>
 	</section>

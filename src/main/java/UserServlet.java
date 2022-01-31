@@ -164,7 +164,7 @@ public class UserServlet extends HttpServlet {
 			int i = statement.executeUpdate();
 		}
 		// Step 3: redirect back to UserServlet
-		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
+		response.sendRedirect("http://localhost:8090/lumpofyums/LogoutServlet");
 		
 		
 	}

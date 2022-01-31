@@ -33,7 +33,7 @@ if (user == null) {
 	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
-<title></title>
+<title>Lump Of Yums</title>
 </head>
 <body>
 

@@ -65,9 +65,12 @@
 			<form id="review-form" action="update" method="post">
 
 				<h2 class="text-brown mb-small">Edit Comment</h2>
-				<div class="mb-small">
-					<input type="text" placeholder="Comment" name="comment"
-						value="<c:out value="${edit.comment}" />" />
+				
+				<div class=" input-group mb-small">
+				<textarea rows="10" cols="30" name="comment"
+					placeholder="Your comment here"><c:out value="${edit.comment}" /></textarea>
+				
+			
 				</div>
 
 				<div class="mb-small">
@@ -87,7 +90,7 @@
 
 			</form>
 		</div>
-
+</section>
 		<footer class="footer">
 			<h4>
 				<i class="material-icons">dining</i>

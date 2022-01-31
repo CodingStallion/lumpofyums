@@ -65,43 +65,53 @@
 			<form id="review-form" action="update" method="post">
 
 				<h2 class="text-brown mb-small">Edit User</h2>
-				<div class="mb-small">
+				<div class="input-group" style="width: 350px;">
+				<label for="username">Username:  </label>
 					<input type="text" placeholder="Username" name="username"
 						value="<c:out value="${user.username}" />" />
 				</div>
-
-				<div class="mb-small">
+			<br />
+				<div class="input-group" style="width: 350px;">
+				<label for="email">Email Address:  </label>
 					<input type="text"  name="email"
 						value="<c:out value="${user.email}" />" />
 						
 				</div>
-				<div class="mb-small">
-					<input type="text"  name="password"
+				
+				<br />
+				<div class="input-group" style="width: 350px;">
+				<label for="password">Password:  </label>
+					<input type="text" name="password"
 						value="<c:out value="${user.password}" />" />
 				</div>
-				
-				<div class="mb-small">
+				<br />
+				<div class="input-group" style="width: 350px;">
+				<label for="address">Address  </label>
 					<input type="text"  name="address"
 						value="<c:out value="${user.address}" />" />
 				</div>
-				<div class="mb-small">
+				<br />
+				<div class="input-group" style="width: 350px;">
+				<label for="first_name">First Name:  </label>
 					<input type="text"  name="first_name"
 						value="<c:out value="${user.first_name}" />" />
 				</div>
-				<div class="mb-small">
+				<br />
+				<div class="input-group" style="width: 350px;">
+				<label for="last_name">Last Name:  </label>
 					<input type="text"  name="last_name"
 						value="<c:out value="${user.last_name}" />" />
 				</div>
-				
+				<br />
 
-				<div class="mb-small">
+				<div class="input-group" style="width: 350px;">
+				<label for="phone">Phone: </label>
 					<input type="text" name="phone"
 						value="<c:out value="${user.phone}" />" />
 						
-						
 				</div>
-				
-			 <div class="input-group">
+				<br />
+			 <div class="input-group" style="width: 50px;">
               <label for="gender">Gender</label>
               <select name="gender">
                 <option value="M">M</option>
@@ -118,6 +128,7 @@
 
 			</form>
 		</div>
+		</section>
 
 		<footer class="footer">
 			<h4>

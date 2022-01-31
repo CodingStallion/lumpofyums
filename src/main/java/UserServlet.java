@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lumpofyums.User;
+import lumpofyums.UsersDetails;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,13 +45,13 @@ public class UserServlet extends HttpServlet {
 			case "/UserServlet/delete":
 				deleteUser(request, response);
 				break;
-			/*case "/UserServlet/edit":
+			case "/UserServlet/edit":
 				showEditForm(request, response);
 				break;
 			case "/UserServlet/update":
 				updateUser(request, response);
 				break;
-	*/
+	
 			}
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
@@ -75,10 +76,12 @@ public class UserServlet extends HttpServlet {
 	private String jdbcPassword = "password";
 	// Step 2: Prepare list of SQL prepared statements to perform CRUD to our
 	// database
-	private static final String INSERT_USERS_SQL = "INSERT INTO UserDetails"
-			+ " (name, password, email, language) VALUES " + " (?, ?, ?);";
+	private static final String INSERT_USERS_SQL = "INSERT INTO USER"
+			+ " (  username  ,  email  , address  , password, first_name ,last_name ,phone ,gender  ) VALUES " + " (?, ?, ?, ?,? ,? ,? ,?);";
+	private static final String SELECT_USER_BY_ID = "select username  ,  email  , address  , password, first_name ,last_name ,phone ,gender from USER where id =?";
+	private static final String SELECT_ALL_USERS = "select * from USER ";
 	private static final String DELETE_USERS_SQL = "delete from user where id = ?;";
-	private static final String UPDATE_USERS_SQL = "update UserDetails set name = ?,password= ?, email =?,language =? where name = ?;";
+	private static final String UPDATE_USERS_SQL = "update user set username =? ,  email =? , address =? , password =?, first_name =? ,last_name =? ,phone =? ,gender =? where id = ? ;";
 
 	// Step 3: Implement the getConnection method which facilitates connection to
 	// the database via JDBC
@@ -95,28 +98,35 @@ public class UserServlet extends HttpServlet {
 		return connection;
 	}
 
-	/*
+	
 	// method to get parameter, query database for existing user data and redirect
 	// to user edit page
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		// get parameter passed in the URL
-		String name = request.getParameter("name");
-		User existingUser = new User("", "", "", "");
+		String username = request.getParameter("username");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		UsersDetails existingUser= new UsersDetails("", "", "", "","","",1,"",1);
 		// Step 1: Establishing a Connection
 		try (Connection connection = getConnection();
 				// Step 2:Create a statement using connection object
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
-			preparedStatement.setString(1, name);
+			preparedStatement.setInt(1, id);
 			// Step 3: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
 			// Step 4: Process the ResultSet object
 			while (rs.next()) {
-				name = rs.getString("name");
-				String password = rs.getString("password");
+				username = rs.getString("username");
 				String email = rs.getString("email");
-				String language = rs.getString("language");
-				existingUser = new User(name, password, email, language);
+				String address = rs.getString("address");
+				String password = rs.getString("password");
+				String first_name = rs.getString("first_name");
+				String last_name= rs.getString("last_name");
+				int phone = rs.getInt("phone");
+				String gender= rs.getString("gender");
+				existingUser = new UsersDetails( username  ,  email  , address  , password, first_name ,last_name ,phone ,gender, id );
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -129,26 +139,36 @@ public class UserServlet extends HttpServlet {
 	// method to update the user table base on the form data
 	private void updateUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		// Step 1: Retrieve value from the request
-		String oriName = request.getParameter("oriName");
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
+		String username = request.getParameter("username");
 		String email = request.getParameter("email");
-		String language = request.getParameter("language");
+		String address = request.getParameter("address");
+		String password = request.getParameter("password");
+		String first_name = request.getParameter("first_name");
+		String last_name = request.getParameter("last_name");
+		int phone = Integer.parseInt(request.getParameter("phone"));
+		String gender = request.getParameter("gender");
+		int id = Integer.parseInt(request.getParameter("id"));
 
 		// Step 2: Attempt connection with database and execute update user SQL query
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
-			statement.setString(1, name);
-			statement.setString(2, password);
-			statement.setString(3, email);
-			statement.setString(4, language);
-			statement.setString(5, oriName);
+			statement.setString(1, username);
+			statement.setString(2, email);
+			statement.setString(3, address);
+			statement.setString(4, password);
+			statement.setString(5, first_name);
+			statement.setString(6, last_name);
+			statement.setInt(7, phone);
+			statement.setString(8, gender);
+			statement.setInt(9, id);
 			int i = statement.executeUpdate();
 		}
 		// Step 3: redirect back to UserServlet
-		response.sendRedirect("http://localhost:8090/HelloWorldJavaEE/UserServlet/dashboard");
+		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
+		
+		
 	}
-*/
+
 	// method to delete user
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		// Step 1: Retrieve value from the request

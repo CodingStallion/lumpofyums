@@ -69,7 +69,7 @@
 				</p>
 			</div>
 		</div>
-
+</div>
 
 		<h1 class="text-brown mb-small" style="margin-top: 30px;">Comments</h1>
 

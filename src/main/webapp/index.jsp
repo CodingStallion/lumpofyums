@@ -90,7 +90,8 @@
 							<%
 							} else {
 							%>
-							<a class="btn" href="http://localhost:8090/lumpofyums/login.jsp">Log in to view more </a>
+							<a class="btn" href="http://localhost:8090/lumpofyums/login.jsp">Log
+								in to view more </a>
 							<%
 							}
 							%>

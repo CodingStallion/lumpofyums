@@ -66,75 +66,67 @@
 
 				<h2 class="text-brown mb-small">Edit User</h2>
 				<div class="input-group" style="width: 350px;">
-				<label for="username">Username:  </label>
-					<input type="text" placeholder="Username" name="username"
+					<label for="username">Username: </label> <input type="text"
+						placeholder="Username" name="username"
 						value="<c:out value="${user.username}" />" />
 				</div>
-			<br />
-				<div class="input-group" style="width: 350px;">
-				<label for="email">Email Address:  </label>
-					<input type="text"  name="email"
-						value="<c:out value="${user.email}" />" />
-						
-				</div>
-				
 				<br />
 				<div class="input-group" style="width: 350px;">
-				<label for="password">Password:  </label>
-					<input type="text" name="password"
-						value="<c:out value="${user.password}" />" />
+					<label for="email">Email Address: </label> <input type="text"
+						name="email" value="<c:out value="${user.email}" />" />
+
+				</div>
+
+				<br />
+				<div class="input-group" style="width: 350px;">
+					<label for="password">Password: </label> <input type="text"
+						name="password" value="<c:out value="${user.password}" />" />
 				</div>
 				<br />
 				<div class="input-group" style="width: 350px;">
-				<label for="address">Address  </label>
-					<input type="text"  name="address"
-						value="<c:out value="${user.address}" />" />
+					<label for="address">Address </label> <input type="text"
+						name="address" value="<c:out value="${user.address}" />" />
 				</div>
 				<br />
 				<div class="input-group" style="width: 350px;">
-				<label for="first_name">First Name:  </label>
-					<input type="text"  name="first_name"
-						value="<c:out value="${user.first_name}" />" />
+					<label for="first_name">First Name: </label> <input type="text"
+						name="first_name" value="<c:out value="${user.first_name}" />" />
 				</div>
 				<br />
 				<div class="input-group" style="width: 350px;">
-				<label for="last_name">Last Name:  </label>
-					<input type="text"  name="last_name"
-						value="<c:out value="${user.last_name}" />" />
+					<label for="last_name">Last Name: </label> <input type="text"
+						name="last_name" value="<c:out value="${user.last_name}" />" />
 				</div>
 				<br />
 
 				<div class="input-group" style="width: 350px;">
-				<label for="phone">Phone: </label>
-					<input type="text" name="phone"
+					<label for="phone">Phone: </label> <input type="text" name="phone"
 						value="<c:out value="${user.phone}" />" />
-						
+
 				</div>
 				<br />
-			 <div class="input-group" style="width: 50px;">
-              <label for="gender">Gender</label>
-              <select name="gender">
-                <option value="M">M</option>
-                <option value="F">F</option>
-              </select>
-            
+				<div class="input-group" style="width: 50px;">
+					<label for="gender">Gender</label> <select name="gender">
+						<option value="M">M</option>
+						<option value="F">F</option>
+					</select>
+
 				</div>
-				
+
 				<div class="mb-small">
-					<input type="hidden" name="id"
-						value="<c:out value="${user.id}" />" />
+					<input type="hidden" name="id" value="<c:out value="${user.id}" />" />
 				</div>
 				<input type="submit" class="btn" value="Submit" />
 
 			</form>
 		</div>
-		</section>
+	</section>
 
-		<footer class="footer">
-			<h4>
-				<i class="material-icons">dining</i>
-			</h4>
-			<span>&copy; Lump Of Yums 2022</span>
-		</footer>
+	<footer class="footer">
+		<h4>
+			<i class="material-icons">dining</i>
+		</h4>
+		<span>&copy; Lump Of Yums 2022</span>
+	</footer>
 </body>
 </html>

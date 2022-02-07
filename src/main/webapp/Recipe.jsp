@@ -67,20 +67,25 @@ if (user == null) {
 		%>
 
 
-           <%
+		<%
            String userName = (String) session.getAttribute("logUser1");
          
          
             %>
-        
-            
-      
-  <c:if test="${recipe.username == logUser1}">
-    <a class="btn" style="float: right; color:white;" href="edit?food_name=<c:out value='${recipe.food_name}' />">Edit Recipe</a>
-    
-	 <a class="btn" style="float: right; margin-right: 10px; color:white;" href="delete?food_name=<c:out value='${recipe.food_name}' />">Delete Recipe</a>
 
-</c:if>
+
+
+		<c:if test="${recipe.username == logUser1}">
+			<a class="btn" style="float: right; color: white;"
+				href="edit?food_name=<c:out value='${recipe.food_name}' />">Edit
+				Recipe</a>
+
+			<a class="btn"
+				style="float: right; margin-right: 10px; color: white;"
+				href="delete?food_name=<c:out value='${recipe.food_name}' />">Delete
+				Recipe</a>
+
+		</c:if>
 		<%
 		}
 		%>
@@ -118,19 +123,22 @@ if (user == null) {
 				<div class="left" style="width: 70%;">
 					<div>
 
-						<i class="material-icons">description</i> <span class="address"><b>Description: </b><br /><c:out
-								value="${recipe.description}" /></span>
+						<i class="material-icons">description</i> <span class="address"><b>Description:
+						</b><br />
+						<c:out value="${recipe.description}" /></span>
 					</div>
 					<div>
-						<i class="material-icons">menu_book</i> <span id="cuisine"><b>Ingredients: </b><br /><c:out
-								value="${recipe.ingredients}" /></span>
+						<i class="material-icons">menu_book</i> <span id="cuisine"><b>Ingredients:
+						</b><br />
+						<c:out value="${recipe.ingredients}" /></span>
 					</div>
 
 				</div>
 				<div class="left">
 					<div>
-						<i class="material-icons">soup_kitchen</i> <span id="cuisine"><b>Directions: </b><br /><c:out
-								value="${recipe.preparation}" /></span>
+						<i class="material-icons">soup_kitchen</i> <span id="cuisine"><b>Directions:
+						</b><br />
+						<c:out value="${recipe.preparation}" /></span>
 					</div>
 
 				</div>
@@ -182,8 +190,10 @@ if (user == null) {
 		%>
 
 		<h1 class="text-brown mb-small" style="margin-top: 30px;">Comments</h1>
-		
- <a class="btn" href="<%=request.getContextPath()%>/CommentServlet/list">View Comments</a>
+
+		<a class="btn"
+			href="<%=request.getContextPath()%>/CommentServlet/list">View
+			Comments</a>
 
 	</section>
 

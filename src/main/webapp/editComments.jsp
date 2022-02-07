@@ -65,16 +65,17 @@
 			<form id="review-form" action="update" method="post">
 
 				<h2 class="text-brown mb-small">Edit Comment</h2>
-				
+
 				<div class=" input-group mb-small">
-				<textarea rows="10" cols="30" name="comment"
-					placeholder="Your comment here"><c:out value="${edit.comment}" /></textarea>
-				
-			
+					<textarea rows="10" cols="30" name="comment"
+						placeholder="Your comment here"><c:out
+							value="${edit.comment}" /></textarea>
+
+
 				</div>
 
 				<div class="mb-small">
-					<input type="hidden"  name="recipe_name"
+					<input type="hidden" name="recipe_name"
 						value="<c:out value="${edit.recipe_name}" />" />
 				</div>
 
@@ -83,19 +84,18 @@
 						value="<c:out value="${edit.uid}" />" />
 				</div>
 				<div class="mb-small">
-					<input type="hidden" name="id"
-						value="<c:out value="${edit.id}" />" />
+					<input type="hidden" name="id" value="<c:out value="${edit.id}" />" />
 				</div>
 				<input type="submit" class="btn" value="Submit" />
 
 			</form>
 		</div>
-</section>
-		<footer class="footer">
-			<h4>
-				<i class="material-icons">dining</i>
-			</h4>
-			<span>&copy; Lump Of Yums 2022</span>
-		</footer>
+	</section>
+	<footer class="footer">
+		<h4>
+			<i class="material-icons">dining</i>
+		</h4>
+		<span>&copy; Lump Of Yums 2022</span>
+	</footer>
 </body>
 </html>

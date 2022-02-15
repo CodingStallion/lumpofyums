@@ -3,21 +3,22 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                echo 'Building..'
+         steps {
                 sh 'make' 
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
             }
         }
         stage('Test') {
-            steps {
-                echo 'Testing..'
-                sh 'make' 
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
+              steps {
+                /* `make check` returns non-zero on test failures,
+                * using `true` to allow the Pipeline to continue nonetheless
+                */
+                sh 'make check || true' 
+                junit '**/target/*.xml' 
             }
         }
         stage('Deploy') {
-               when {
+              when {
               expression {
                 currentBuild.result == null || currentBuild.result == 'SUCCESS' 
               }
@@ -27,10 +28,4 @@ pipeline {
             }
         }
     }
-        }
-          stage('Release') {
-            steps {
-                echo 'Releasing....'
-            }
-        }
 }

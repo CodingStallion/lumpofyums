@@ -33,5 +33,4 @@ pipeline {
                 echo 'Releasing....'
             }
         }
-    }
 }

@@ -5,17 +5,28 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'make' 
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                sh 'make' 
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
             }
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+               when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
             }
+            steps {
+                sh 'make publish'
+            }
+        }
+    }
         }
           stage('Release') {
             steps {

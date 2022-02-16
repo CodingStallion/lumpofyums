@@ -34,7 +34,7 @@ if (username == null) {
 } else {
  
                 message = "You must enter a username";
-                first = true;
+                first = false;
         
 }
 
@@ -62,11 +62,12 @@ if (username == null) {
 				
 					<div class="input-group">
 					
-					<% if (! first) { %>
+					
 						<label for="username">Username</label> <input type="text"
 							placeholder="Username" name="username"/>
 							
-							
+						<% if (! first) { %>	
+							<%= message %>
 							<% } else { %>
 						<%= message %>
 						

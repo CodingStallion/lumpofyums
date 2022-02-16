@@ -30,7 +30,6 @@ String address = request.getParameter("address");
 String password = request.getParameter("password");
 String first_name = request.getParameter("first_name");
 String last_name = request.getParameter("last_name");
-int phone = Integer.parseInt(request.getParameter("phone"));
 String gender = request.getParameter("gender");
 
 %>

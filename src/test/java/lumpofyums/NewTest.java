@@ -14,6 +14,27 @@ public class NewTest {
   //declare Selenium WebDriver
   private WebDriver webDriver;		
  
+  @Test
+  public void checkLogin() {
+      //Load website as a new page
+
+      //Assert the title to check that we are indeed in the correct website
+
+      System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+      WebDriver driver=new ChromeDriver();
+      driver.manage().window().maximize();
+      driver.get("http://localhost:8090/lumpofyums/login.jsp");
+      WebElement username=driver.findElement(By.name("username"));
+      WebElement password=driver.findElement(By.name("password"));
+      WebElement login=driver.findElement(By.className("btn"));
+      username.sendKeys("alicia123");
+      password.sendKeys("password");
+      login.click();
+      String actualUrl="http://localhost:8090/lumpofyums/account.jsp";
+      String expectedUrl= driver.getCurrentUrl();
+      Assert.assertEquals(expectedUrl,actualUrl);
+      driver.quit();
+  }
   
   
   @BeforeTest

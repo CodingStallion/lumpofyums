@@ -59,7 +59,7 @@ if (username == null) {
 					
 					
 						<label for="username">Username</label> <input type="text"
-							placeholder="Username" name="username"/>
+							placeholder="Username" name="username" required/>
 							
 	
 					</div>

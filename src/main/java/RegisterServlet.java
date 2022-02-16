@@ -53,13 +53,7 @@ public class RegisterServlet extends HttpServlet {
 		User userModel = new User(username, email, address, password, first_name, last_name, phone, gender);
 
 		//create a database model
-		
-		if(username == null) {
-			response.sendRedirect("register.jsp");
-			
-		} else {
-			
-	UserDatabase regUser = new UserDatabase(ConnectionPro.getConnection());
+		UserDatabase regUser = new UserDatabase(ConnectionPro.getConnection());
 		if (regUser.saveUser(userModel)) {
 		   response.sendRedirect("login.jsp");
 		   
@@ -69,8 +63,6 @@ public class RegisterServlet extends HttpServlet {
 		    regSession.setAttribute("RegError", errorMessage);
 		    response.sendRedirect("register.jsp");
 		    }
-		}
-	
 		doGet(request, response);
 	}
 

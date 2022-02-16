@@ -23,7 +23,17 @@
 <title>Lump Of Yums</title>
 </head>
 <body>
+<%
+String username = request.getParameter("username");
+String email = request.getParameter("email");
+String address = request.getParameter("address");
+String password = request.getParameter("password");
+String first_name = request.getParameter("first_name");
+String last_name = request.getParameter("last_name");
+int phone = Integer.parseInt(request.getParameter("phone"));
+String gender = request.getParameter("gender");
 
+%>
 	<!--  Lump Of Yums Update 2 -->
 	<nav class="nav-wrapper">
 		<a href="<%=request.getContextPath()%>/RecipeServlet/home"
@@ -46,7 +56,10 @@
 				<div class="left card-form">
 					<div class="input-group">
 						<label for="username">Username</label> <input type="text"
-							placeholder="Username" name="username" />
+							placeholder="Username" name="username"/>
+							<c:if test="${username == null}">
+							<p>Username is null</p>
+							</c:if>
 					</div>
 					<div class="input-group">
 						<label for="email">Email address</label> <input type="text"

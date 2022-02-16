@@ -23,17 +23,7 @@
 <title>Lump Of Yums</title>
 </head>
 <body>
-<%
-String username = request.getParameter("username");
-boolean first = false;
-String message = "";
 
-if (username == null) {
-        first = true;
-        message = "No username is entered";
-}
-
-%>
 	<!--  Lump Of Yums Update 2 -->
 	<nav class="nav-wrapper">
 		<a href="<%=request.getContextPath()%>/RecipeServlet/home"
@@ -69,12 +59,12 @@ if (username == null) {
 					</div>
 					<div class="input-group">
 						<label for="password">Password</label> <input type="password"
-							placeholder="Password" name="password" required/>
+							placeholder="Password" name="password" id="password" required minlength="8" maxlength="25"/>
 					</div>
 					<div class="input-group">
 						<label for="confirm_password">Confirm Password</label> <input
 							type="password" placeholder="Confirm Password"
-							name="confirm_password" required />
+							name="confirm_password" id="confirm_password" required />
 					</div>
 					<div class="input-group">
 						<label for="address">Address</label> <input type="text"
@@ -102,7 +92,7 @@ if (username == null) {
 					</div>
 					<div class="input-group">
 						<label for="phone">Phone</label> <input type="text"
-							placeholder="Phone" name="phone" required/>
+							placeholder="Phone" name="phone" required maxlength="11"/>
 					</div>
 					<div>
 						<input type="submit" value="Register" class="btn" />

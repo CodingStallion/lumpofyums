@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -59,8 +60,15 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("logUser1", user.getUserName());
             response.sendRedirect("account.jsp");
         }else{
-    		response.sendRedirect("http://localhost:8090/lumpofyums/login.jsp");
             System.out.println("user not found");
+            response.setContentType("text/html");
+            PrintWriter pw=response.getWriter();
+            pw.println("<script type=\"text/javascript\">");
+            pw.println("alert('Username or password incorrect');");
+            pw.println("location='login.jsp';");
+            pw.println("</script>");
+            RequestDispatcher rd=request.getRequestDispatcher("http://localhost:8090/lumpofyums/login.jsp");
+            rd.include(request, response);
 		doGet(request, response);
 	}
 	}

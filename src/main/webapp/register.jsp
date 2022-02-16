@@ -25,12 +25,18 @@
 <body>
 <%
 String username = request.getParameter("username");
-String email = request.getParameter("email");
-String address = request.getParameter("address");
-String password = request.getParameter("password");
-String first_name = request.getParameter("first_name");
-String last_name = request.getParameter("last_name");
-String gender = request.getParameter("gender");
+boolean first = false;
+String message = "";
+
+if (username == null) {
+        first = true;
+        message = "Your results will appear here";
+} else {
+ 
+                message = "You must enter a username";
+                first = true;
+        
+}
 
 %>
 	<!--  Lump Of Yums Update 2 -->
@@ -53,12 +59,18 @@ String gender = request.getParameter("gender");
 		<form id="register-form" action="RegisterServlet" method="post">
 			<div class="double-panel bg-orange card-form">
 				<div class="left card-form">
+				
 					<div class="input-group">
+					
+					<% if (! first) { %>
 						<label for="username">Username</label> <input type="text"
 							placeholder="Username" name="username"/>
-							<c:if test="${username == null}">
-							<p>Username is null</p>
-							</c:if>
+							
+							
+							<% } else { %>
+						<%= message %>
+						
+						<% } %>
 					</div>
 					<div class="input-group">
 						<label for="email">Email address</label> <input type="text"

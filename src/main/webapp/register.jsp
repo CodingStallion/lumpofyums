@@ -61,12 +61,7 @@ if (username == null) {
 						<label for="username">Username</label> <input type="text"
 							placeholder="Username" name="username"/>
 							
-						<% if (! first) { %>	
-							<%= message %>
-							<% } else { %>
-						<%= message %>
-						
-						<% } %>
+	
 					</div>
 					<div class="input-group">
 						<label for="email">Email address</label> <input type="text"

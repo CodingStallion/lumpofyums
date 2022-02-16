@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
 			
 		} else {
 			
-				UserDatabase regUser = new UserDatabase(ConnectionPro.getConnection());
+	UserDatabase regUser = new UserDatabase(ConnectionPro.getConnection());
 		if (regUser.saveUser(userModel)) {
 		   response.sendRedirect("login.jsp");
 		   

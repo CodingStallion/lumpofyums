@@ -44,40 +44,45 @@
 		<form id="register-form" action="RegisterServlet" method="post">
 			<div class="double-panel bg-orange card-form">
 				<div class="left card-form">
+				
 					<div class="input-group">
+					
+					
 						<label for="username">Username</label> <input type="text"
-							placeholder="Username" name="username" />
+							placeholder="Username" name="username" required/>
+							
+	
 					</div>
 					<div class="input-group">
-						<label for="email">Email address</label> <input type="text"
-							placeholder="Email Address" name="email" />
+						<label for="email">Email address</label> <input type="email"
+							placeholder="Email Address" name="email" required />
 					</div>
 					<div class="input-group">
 						<label for="password">Password</label> <input type="password"
-							placeholder="Password" name="password" />
+							placeholder="Password" name="password" id="password" required minlength="8" maxlength="25"/>
 					</div>
 					<div class="input-group">
 						<label for="confirm_password">Confirm Password</label> <input
 							type="password" placeholder="Confirm Password"
-							name="confirm_password" />
+							name="confirm_password" id="confirm_password" required />
 					</div>
 					<div class="input-group">
 						<label for="address">Address</label> <input type="text"
-							placeholder="Address" name="address" />
+							placeholder="Address" name="address" required />
 					</div>
 					<div class="input-group">
 						<label for="postal_code">Postal Code</label> <input type="text"
-							placeholder="Postal Code" name="postal_code" />
+							placeholder="Postal Code" name="postal_code" required />
 					</div>
 				</div>
 				<div class="right card-form">
 					<div class="input-group">
 						<label for="first_name">First Name</label> <input type="text"
-							placeholder="First Name" name="first_name" />
+							placeholder="First Name" name="first_name" required/>
 					</div>
 					<div class="input-group">
 						<label for="last_name">Last Name</label> <input type="text"
-							placeholder="Last Name" name="last_name" />
+							placeholder="Last Name" name="last_name" required/>
 					</div>
 					<div class="input-group">
 						<label for="gender">Gender</label> <select name="gender">
@@ -87,7 +92,7 @@
 					</div>
 					<div class="input-group">
 						<label for="phone">Phone</label> <input type="text"
-							placeholder="Phone" name="phone" />
+							placeholder="Phone" name="phone" required maxlength="11"/>
 					</div>
 					<div>
 						<input type="submit" value="Register" class="btn" />

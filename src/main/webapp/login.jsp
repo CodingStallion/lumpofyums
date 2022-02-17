@@ -44,12 +44,12 @@
 				<form id="login-form" class="card-form bg-orange"
 					action="LoginServlet" method="post">
 					<div class="input-group">
-						<label for="username">Username</label> <input required type="text"
-							placeholder="Username" name="username" />
+						<label for="username">Username</label> <input  type="text"
+							placeholder="Username" name="username" required/>
 					</div>
 					<div class="input-group">
 						<label for="password">Password</label> <input required
-							type="password" placeholder="Password" name="password" />
+							type="password" placeholder="Password" name="password" required />
 					</div>
 					<div>
 						<input type="submit" value="Continue" class="btn" />

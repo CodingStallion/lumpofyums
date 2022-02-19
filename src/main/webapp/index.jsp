@@ -77,6 +77,7 @@
 			<ul class="restaurant-list">
 				<c:forEach var="recipe" items="${listUsers}">
 					<li class="restaurant-item">
+					<img src="data:image/jpg;base64, <c:out value="${recipe.imageData}" />"  alt="Img">
 						<div class="text-align-center">
 							<h4 class="mb-small">
 								<c:out value="${recipe.food_name}" />

@@ -70,7 +70,7 @@
 
 
 		<div class="restaurant-reviews" id="authenticated-reviews">
-			<form id="review-form" action="CreateRecipeServlet" method="post">
+			<form id="review-form" action="CreateRecipeServlet" method="post" enctype="multipart/form-data">
 
 				<h2 class="text-brown mb-small">Recipe name</h2>
 				<div class="mb-small">
@@ -86,10 +86,16 @@
 					<input type="number" value="1" name="cooking_time" min="1"
 						max="100" /> minutes
 				</div>
+				
+				<h2 class="text-brown mb-small">Image</h2>
+				<div class="mb-small">
+					<input type="file" name="file">
+				</div>
 
 				<div class="mb-small" style="display: none;">
 					<input type="number" value=<%= user.getId() %> name="uid" />
 				</div>
+				
 
 				<h2 class="text-brown mb-small">Level</h2>
 				<div class="mb-small">

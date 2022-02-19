@@ -50,6 +50,8 @@
 		</ul>
 	</nav>
 
+ 
+ 
 
 	<section class="bg-orange main-section">
 		<div class="mb-medium">
@@ -64,10 +66,11 @@
 			}
 			%>
 		</div>
-		<form id="search-form" class="search-input mb-large">
-			<button type="submit"></button>
-			<input type="text" placeholder="Search" name="search_term"
+		<form id="search-form" class="search-input mb-large" method="post" action="<%=request.getContextPath()%>/search.jsp">
+			
+			<input type="text" placeholder="Search" name="food_name"
 				class="input" />
+				<button type="submit"></button>
 		</form>
 
 		<div>

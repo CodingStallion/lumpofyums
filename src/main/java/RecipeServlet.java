@@ -40,7 +40,7 @@ public class RecipeServlet extends HttpServlet {
 			+ " (food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid) VALUES "
 			+ " (?,?,?,?,?,?,?,?);";
 	private static final String SELECT_RECIPE_BY_ID = "select food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, username from recipe R INNER JOIN user U ON R.uid = U.id where food_name =?";
-	private static final String SELECT_ALL_RECIPE = "select * from recipe R INNER JOIN user U ON R.uid = U.id";
+	private static final String SELECT_ALL_RECIPE = "select * from recipe R INNER JOIN user U ON R.uid = U.id order by food_name";
 	private static final String DELETE_RECIPE_SQL = "delete from recipe where food_name = ?;";
 	private static final String UPDATE_RECIPE_SQL = "update recipe set food_name=?, prep_time =?, cooking_time =?,level =?,description =?,ingredients =?,preparation =? , uid =? where food_name =? ;";
 	

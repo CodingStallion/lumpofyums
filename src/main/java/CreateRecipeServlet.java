@@ -1,11 +1,18 @@
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +21,7 @@ import java.sql.PreparedStatement;
  * Servlet implementation class CreateRecipeServlet
  */
 @WebServlet("/CreateRecipeServlet")
+@MultipartConfig
 public class CreateRecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,6 +54,7 @@ public class CreateRecipeServlet extends HttpServlet {
 		// Step 1: Initialize a PrintWriter object to return the html values via the
 		// response
 		PrintWriter out = response.getWriter();
+		FileInputStream fis=null;
 		// Step 2: retrieve the four parameters from the request from the web form
 
 		String food = request.getParameter("food_name");
@@ -56,6 +65,9 @@ public class CreateRecipeServlet extends HttpServlet {
 		String b = request.getParameter("ingredients");
 		String a = request.getParameter("preparation");
 		int user = Integer.parseInt(request.getParameter("uid"));
+		Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+	    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+	    InputStream fileContent = filePart.getInputStream();
 		// Step 3: attempt connection to database using JDBC, you can change the
 		// username and password accordingly using the phpMyAdmin > User Account
 		// dashboard
@@ -66,7 +78,7 @@ public class CreateRecipeServlet extends HttpServlet {
 			// Step 4: implement the sql query using prepared statement
 			// (https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html)
 			PreparedStatement ps = con.prepareStatement(
-					"insert into recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid) values(?,?,?,?,?,?,?,?)");
+					"insert into recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, image) values(?,?,?,?,?,?,?,?,?)");
 			// Step 5: parse in the data retrieved from the web form request into the
 			// prepared statement accordingly
 			ps.setString(1, food);
@@ -77,6 +89,7 @@ public class CreateRecipeServlet extends HttpServlet {
 			ps.setString(6, b);
 			ps.setString(7, a);
 			ps.setInt(8, user);
+			ps.setBinaryStream(9, fileContent);
 			// Step 6: perform the query on the database using the prepared statement
 			int i = ps.executeUpdate();
 			// Step 7: check if the query had been successfully execute, return “You are

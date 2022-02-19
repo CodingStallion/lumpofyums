@@ -1,5 +1,9 @@
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import lumpofyums.Recipe;
+
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,6 +24,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -39,7 +47,7 @@ public class RecipeServlet extends HttpServlet {
 	private static final String INSERT_RECIPE_SQL = "INSERT INTO RECIPE"
 			+ " (food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid) VALUES "
 			+ " (?,?,?,?,?,?,?,?);";
-	private static final String SELECT_RECIPE_BY_ID = "select food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, username from recipe R INNER JOIN user U ON R.uid = U.id where food_name =?";
+	private static final String SELECT_RECIPE_BY_ID = "select food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, image, username from recipe R INNER JOIN user U ON R.uid = U.id where food_name =?";
 	private static final String SELECT_ALL_RECIPE = "select * from recipe R INNER JOIN user U ON R.uid = U.id order by food_name";
 	private static final String DELETE_RECIPE_SQL = "delete from recipe where food_name = ?;";
 	private static final String UPDATE_RECIPE_SQL = "update recipe set food_name=?, prep_time =?, cooking_time =?,level =?,description =?,ingredients =?,preparation =? , uid =? where food_name =? ;";
@@ -126,8 +134,13 @@ public class RecipeServlet extends HttpServlet {
 				String preparation = rs.getString("preparation");
 				int uid = rs.getInt("uid");
 				String username = rs.getString("username");
+				Blob image = rs.getBlob("image");
+				byte[] bdata = image.getBytes(1, (int) image.length());
+				String text = Base64.getEncoder().encodeToString(bdata);
+				
+				System.out.println(text);
 				recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation,
-						uid, username));
+						uid, username, text));
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -148,7 +161,7 @@ public class RecipeServlet extends HttpServlet {
 
 		// get parameter passed in the URL
 		String food_name = request.getParameter("food_name");
-		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "");
+		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "","");
 		// Step 1: Establishing a Connection
 		try (Connection connection = getConnection();
 				// Step 2:Create a statement using connection object
@@ -167,8 +180,11 @@ public class RecipeServlet extends HttpServlet {
 				String preparation = rs.getString("preparation");
 				int uid = rs.getInt("uid");
 				String username = rs.getString("username");
+				Blob image = rs.getBlob("image");
+				byte[] bdata = image.getBytes(1, (int) image.length());
+				String text = Base64.getEncoder().encodeToString(bdata);
 				existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients,
-						preparation, uid, username);
+						preparation, uid, username, text);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -189,7 +205,7 @@ public class RecipeServlet extends HttpServlet {
 
 		// get parameter passed in the URL
 		String food_name = request.getParameter("food_name");
-		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "");
+		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "", "");
 		// Step 1: Establishing a Connection
 		try (Connection connection = getConnection();
 				// Step 2:Create a statement using connection object
@@ -208,8 +224,11 @@ public class RecipeServlet extends HttpServlet {
 				String preparation = rs.getString("preparation");
 				int uid = rs.getInt("uid");
 				String username = rs.getString("username");
+				Blob image = rs.getBlob("image");
+				byte[] bdata = image.getBytes(1, (int) image.length());
+				String text = Base64.getEncoder().encodeToString(bdata);
 				existingRecipe = new Recipe(food_name, prep_time, cooking_time, level, description, ingredients,
-						preparation, uid, username);
+						preparation, uid, username, text);
 
 			}
 		} catch (SQLException e) {

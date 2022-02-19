@@ -115,8 +115,13 @@ if (user == null) {
 				<p class="address">
 					<c:out value="Posted by: ${recipe.username}" />
 				</p>
-			</div>
+			</div>									     <img
+        src="data:image/jpg;base64, <c:out value="${recipe.imageData}" />"
+        alt="restaurant"
+        class="full-width-img"
+      />
 		</div>
+	
 		<div class="restaurant-details">
 			<h1 class="text-brown mb-small">Content</h1>
 			<div class="double-panel restaurant-details-content">
@@ -132,15 +137,21 @@ if (user == null) {
 						</b><br />
 						<c:out value="${recipe.ingredients}" /></span>
 					</div>
-
-				</div>
-				<div class="left">
+					
 					<div>
 						<i class="material-icons">soup_kitchen</i> <span id="cuisine"><b>Directions:
 						</b><br />
 						<c:out value="${recipe.preparation}" /></span>
 					</div>
 
+
+				</div>
+				<div class="left" style="width: 30%;">
+								     <img
+        src="data:image/jpg;base64, <c:out value="${recipe.imageData}" />"
+        alt="restaurant"
+   
+      />
 				</div>
 			</div>
 		</div>

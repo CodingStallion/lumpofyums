@@ -70,7 +70,7 @@
 			
 			<input type="text" placeholder="Search" name="food_name"
 				class="input" />
-				<button type="submit"></button>
+				<button type="submit" class="submit_search"></button>
 		</form>
 
 		<div>

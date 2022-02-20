@@ -5,9 +5,9 @@
     <classes>
       <class name="lumpofyums.NewTest">
         <methods>
-          <include name="checkTitle"/>
           <include name="beforeTest"/>
           <include name="afterTest"/>
+          <include name="checkSearch"/>
         </methods>
       </class> <!-- lumpofyums.NewTest -->
     </classes>

@@ -64,7 +64,7 @@
 					<div class="input-group">
 						<label for="confirm_password">Confirm Password</label> <input
 							type="password" placeholder="Confirm Password"
-							name="confirm_password" id="confirm_password" required />
+							name="confirm_password" id="confirm_password" />
 					</div>
 					<div class="input-group">
 						<label for="address">Address</label> <input type="text"
@@ -91,7 +91,7 @@
 						</select>
 					</div>
 					<div class="input-group">
-						<label for="phone">Phone</label> <input type="text"
+						<label for="phone">Phone</label> <input type="number"
 							placeholder="Phone" name="phone" required maxlength="11"/>
 					</div>
 					<div>

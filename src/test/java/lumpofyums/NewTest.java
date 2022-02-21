@@ -94,6 +94,59 @@ public class NewTest {
       driver.quit();
   }
   
+  @Test
+  public void checkEasySort() {
+      //Load website as a new page
+
+      //Assert the title to check that we are indeed in the correct website
+
+      System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+      WebDriver driver=new ChromeDriver();
+      driver.manage().window().maximize();
+      driver.get("http://localhost:8090/lumpofyums/index.jsp");
+      WebElement easyButton=driver.findElement(By.id("easyBtn"));
+      easyButton.click();
+      String actualUrl="http://localhost:8090/lumpofyums/RecipeServlet/easy";
+      String expectedUrl= driver.getCurrentUrl();
+      Assert.assertEquals(expectedUrl,actualUrl);
+      driver.quit();
+  }
+  
+  @Test
+  public void checkNormalSort() {
+      //Load website as a new page
+
+      //Assert the title to check that we are indeed in the correct website
+
+      System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+      WebDriver driver=new ChromeDriver();
+      driver.manage().window().maximize();
+      driver.get("http://localhost:8090/lumpofyums/index.jsp");
+      WebElement easyButton=driver.findElement(By.id("normalBtn"));
+      easyButton.click();
+      String actualUrl="http://localhost:8090/lumpofyums/RecipeServlet/normal";
+      String expectedUrl= driver.getCurrentUrl();
+      Assert.assertEquals(expectedUrl,actualUrl);
+      driver.quit();
+  }
+  
+  @Test
+  public void checkHardSort() {
+      //Load website as a new page
+
+      //Assert the title to check that we are indeed in the correct website
+
+      System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+      WebDriver driver=new ChromeDriver();
+      driver.manage().window().maximize();
+      driver.get("http://localhost:8090/lumpofyums/index.jsp");
+      WebElement easyButton=driver.findElement(By.id("hardBtn"));
+      easyButton.click();
+      String actualUrl="http://localhost:8090/lumpofyums/RecipeServlet/hard";
+      String expectedUrl= driver.getCurrentUrl();
+      Assert.assertEquals(expectedUrl,actualUrl);
+      driver.quit();
+  }
   
   
   

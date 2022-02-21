@@ -66,14 +66,14 @@
 			}
 			%>	
 			
-			<a class="btn" style="float: right; margin-right: 6px;"
+			<a class="btn" id="hardBtn" style="float: right; margin-right: 6px;"
 				href="<%=request.getContextPath()%>/RecipeServlet/hard">SORT BY HARD LEVEL</a>
 			
-			<a class="btn" style="float: right; margin-right: 6px;"
+			<a class="btn" id="normalBtn" style="float: right; margin-right: 6px;"
 				href="<%=request.getContextPath()%>/RecipeServlet/normal">SORT BY NORMAL LEVEL</a>
 				
 				
-				<a class="btn" style="float: right; margin-right: 6px;"
+				<a class="btn" id="easyBtn" style="float: right; margin-right: 6px;"
 				href="<%=request.getContextPath()%>/RecipeServlet/easy">SORT BY EASY LEVEL</a>
 					</div>
 					

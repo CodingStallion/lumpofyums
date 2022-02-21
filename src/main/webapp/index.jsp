@@ -64,8 +64,23 @@
 				Recipe</a>
 			<%
 			}
-			%>
-		</div>
+			%>	
+			
+			<a class="btn" style="float: right; margin-right: 6px;"
+				href="<%=request.getContextPath()%>/RecipeServlet/hard">SORT BY HARD LEVEL</a>
+			
+			<a class="btn" style="float: right; margin-right: 6px;"
+				href="<%=request.getContextPath()%>/RecipeServlet/normal">SORT BY NORMAL LEVEL</a>
+				
+				
+				<a class="btn" style="float: right; margin-right: 6px;"
+				href="<%=request.getContextPath()%>/RecipeServlet/easy">SORT BY EASY LEVEL</a>
+					</div>
+					
+					
+			
+			
+
 		<form id="search-form" class="search-input mb-large" method="post" action="<%=request.getContextPath()%>/search.jsp">
 			
 			<input type="text" placeholder="Search" name="food_name"

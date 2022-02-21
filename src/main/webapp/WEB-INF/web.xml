@@ -28,6 +28,9 @@
     <url-pattern>/RecipeServlet/update</url-pattern>
     <url-pattern>/RecipeServlet/edit</url-pattern>
     <url-pattern>/RecipeServlet/delete</url-pattern>
+    <url-pattern>/RecipeServlet/easy</url-pattern>
+    <url-pattern>/RecipeServlet/normal</url-pattern>
+    <url-pattern>/RecipeServlet/hard</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>

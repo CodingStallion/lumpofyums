@@ -49,6 +49,9 @@ public class RecipeServlet extends HttpServlet {
 			+ " (?,?,?,?,?,?,?,?);";
 	private static final String SELECT_RECIPE_BY_ID = "select food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, image, username from recipe R INNER JOIN user U ON R.uid = U.id where food_name =?";
 	private static final String SELECT_ALL_RECIPE = "select * from recipe R INNER JOIN user U ON R.uid = U.id order by food_name";
+	private static final String SELECT_RECIPE_EASY = "select * from recipe R INNER JOIN user U ON R.uid = U.id where level like 'Easy'";
+	private static final String SELECT_RECIPE_NORMAL = "select * from recipe R INNER JOIN user U ON R.uid = U.id where level like 'Normal'";
+	private static final String SELECT_RECIPE_HARD = "select * from recipe R INNER JOIN user U ON R.uid = U.id where level like 'Hard'";
 	private static final String DELETE_RECIPE_SQL = "delete from recipe where food_name = ?;";
 	private static final String UPDATE_RECIPE_SQL = "update recipe set food_name=?, prep_time =?, cooking_time =?,level =?,description =?,ingredients =?,preparation =? , uid =? where food_name =? ;";
 	
@@ -104,6 +107,15 @@ public class RecipeServlet extends HttpServlet {
 				break;
 			case "/RecipeServlet/delete":
 				deleteRecipe(request, response);
+				break;
+			case "/RecipeServlet/easy":
+				showRecipeEasy(request, response);
+				break;
+			case "/RecipeServlet/normal":
+				showRecipeNormal(request, response);
+				break;
+			case "/RecipeServlet/hard":
+				showRecipeHard(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
@@ -197,6 +209,136 @@ public class RecipeServlet extends HttpServlet {
 		request.getRequestDispatcher("/Recipe.jsp").forward(request, response);
 		
 	}
+	
+	// method to get parameter, query database for existing user data and redirect
+	// to user edit page
+	private void showRecipeEasy(HttpServletRequest request, HttpServletResponse response)
+
+			throws SQLException, ServletException, IOException {
+
+		List<Recipe> recipes = new ArrayList<>();
+		try (Connection connection = getConnection();
+				// Step 5.1: Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RECIPE_EASY);) {
+			// Step 5.2: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+			// Step 5.3: Process the ResultSet object.
+			while (rs.next()) {
+				String food_name = rs.getString("food_name");
+				int prep_time = rs.getInt("prep_time");
+				int cooking_time = rs.getInt("cooking_time");
+				String level = rs.getString("level");
+				String description = rs.getString("description");
+				String ingredients = rs.getString("ingredients");
+				String preparation = rs.getString("preparation");
+				int uid = rs.getInt("uid");
+				String username = rs.getString("username");
+				Blob image = rs.getBlob("image");
+				byte[] bdata = image.getBytes(1, (int) image.length());
+				String text = Base64.getEncoder().encodeToString(bdata);
+				
+				System.out.println(text);
+				recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation,
+						uid, username, text));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// Step 5.4: Set the users list into the listUsers attribute to be pass to the
+		// userManagement.jsp
+		
+		request.setAttribute("listUsers", recipes);
+		request.getRequestDispatcher("/sortEasy.jsp").forward(request, response);
+
+		
+	}
+	
+	// method to get parameter, query database for existing user data and redirect
+	// to user edit page
+	private void showRecipeNormal(HttpServletRequest request, HttpServletResponse response)
+
+			throws SQLException, ServletException, IOException {
+
+		List<Recipe> recipes = new ArrayList<>();
+		try (Connection connection = getConnection();
+				// Step 5.1: Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RECIPE_NORMAL);) {
+			// Step 5.2: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+			// Step 5.3: Process the ResultSet object.
+			while (rs.next()) {
+				String food_name = rs.getString("food_name");
+				int prep_time = rs.getInt("prep_time");
+				int cooking_time = rs.getInt("cooking_time");
+				String level = rs.getString("level");
+				String description = rs.getString("description");
+				String ingredients = rs.getString("ingredients");
+				String preparation = rs.getString("preparation");
+				int uid = rs.getInt("uid");
+				String username = rs.getString("username");
+				Blob image = rs.getBlob("image");
+				byte[] bdata = image.getBytes(1, (int) image.length());
+				String text = Base64.getEncoder().encodeToString(bdata);
+				
+				System.out.println(text);
+				recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation,
+						uid, username, text));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// Step 5.4: Set the users list into the listUsers attribute to be pass to the
+		// userManagement.jsp
+		
+		request.setAttribute("listUsers", recipes);
+		request.getRequestDispatcher("/sortNormal.jsp").forward(request, response);
+
+		
+	}
+	
+	// method to get parameter, query database for existing user data and redirect
+	// to user edit page
+	private void showRecipeHard(HttpServletRequest request, HttpServletResponse response)
+
+			throws SQLException, ServletException, IOException {
+
+		List<Recipe> recipes = new ArrayList<>();
+		try (Connection connection = getConnection();
+				// Step 5.1: Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_RECIPE_HARD);) {
+			// Step 5.2: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+			// Step 5.3: Process the ResultSet object.
+			while (rs.next()) {
+				String food_name = rs.getString("food_name");
+				int prep_time = rs.getInt("prep_time");
+				int cooking_time = rs.getInt("cooking_time");
+				String level = rs.getString("level");
+				String description = rs.getString("description");
+				String ingredients = rs.getString("ingredients");
+				String preparation = rs.getString("preparation");
+				int uid = rs.getInt("uid");
+				String username = rs.getString("username");
+				Blob image = rs.getBlob("image");
+				byte[] bdata = image.getBytes(1, (int) image.length());
+				String text = Base64.getEncoder().encodeToString(bdata);
+				
+				System.out.println(text);
+				recipes.add(new Recipe(food_name, prep_time, cooking_time, level, description, ingredients, preparation,
+						uid, username, text));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		// Step 5.4: Set the users list into the listUsers attribute to be pass to the
+		// userManagement.jsp
+		
+		request.setAttribute("listUsers", recipes);
+		request.getRequestDispatcher("/sortHard.jsp").forward(request, response);
+
+		
+	}
+	
 
 
 	

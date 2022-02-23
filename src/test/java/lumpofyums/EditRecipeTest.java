@@ -26,10 +26,10 @@ public class EditRecipeTest {
 		WebElement username = driver.findElement(By.name("username"));
 		WebElement password = driver.findElement(By.name("password"));
 		WebElement login = driver.findElement(By.className("btn"));
-		username.sendKeys("e");
-		password.sendKeys("kysplslol");
+		username.sendKeys("alicia123");
+		password.sendKeys("password");
 		login.click();
-		driver.get("http://localhost:8090/lumpofyums/RecipeServlet/recipe?food_name=nicefood");
+		driver.get("http://localhost:8090/lumpofyums/RecipeServlet/recipe?food_name=Chicken%20Ramen");
 		WebElement edit = driver.findElement(By.id("editbtn"));
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		edit.click();
@@ -40,14 +40,14 @@ public class EditRecipeTest {
 		WebElement ingredients = driver.findElement(By.name("ingredients"));
 		WebElement preparation = driver.findElement(By.name("preparation"));
 		WebElement btn = driver.findElement(By.className("btn"));
-		food_name.sendKeys("nicefood");
+		food_name.sendKeys("Korean Chicken Ramen");
 		prep_time.sendKeys("");
 		cooking_time.sendKeys("");
 		description.sendKeys("test");
 		ingredients.sendKeys("test");
 		preparation.sendKeys("test");
 		btn.click();
-
+		 driver.quit();
 	}
 
 	@BeforeTest

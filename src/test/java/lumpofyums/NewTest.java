@@ -1,5 +1,8 @@
 package lumpofyums;
 
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 //import necessary Selenium WebDriver classes
@@ -28,8 +31,8 @@ public class NewTest {
       WebElement username=driver.findElement(By.name("username"));
       WebElement password=driver.findElement(By.name("password"));
       WebElement login=driver.findElement(By.className("btn"));
-      username.sendKeys("e");
-      password.sendKeys("kysplslol");
+      username.sendKeys("alicia123");
+      password.sendKeys("password");
       login.click();
       String actualUrl="http://localhost:8090/lumpofyums/account.jsp";
       String expectedUrl= driver.getCurrentUrl();
@@ -56,6 +59,7 @@ public class NewTest {
       WebElement lastname =driver.findElement(By.name("last_name"));
       WebElement gender=driver.findElement(By.name("gender"));
       WebElement phone=driver.findElement(By.name("phone"));
+      WebElement answer = driver.findElement(By.name("answer"));
       WebElement login=driver.findElement(By.className("btn"));
       username.sendKeys("KevKevMalone");
       password.sendKeys("password");
@@ -66,6 +70,7 @@ public class NewTest {
       lastname.sendKeys("Malone");
       gender.sendKeys("M");
       phone.sendKeys(String.valueOf(phoneInt));
+      answer.sendKeys("Cupcake");
       login.click();
       String actualUrl="http://localhost:8090/lumpofyums/login.jsp";
       String expectedUrl= driver.getCurrentUrl();
@@ -148,6 +153,89 @@ public class NewTest {
       Assert.assertEquals(expectedUrl,actualUrl);
       driver.quit();
   }
+  
+  @Test
+  public void checkCreateInput() {
+	  Random r = new Random();
+		int low = 1;
+		int high = 99;
+		int result = r.nextInt(high-low) + low;
+	  int prepInt = 9;
+	  int cookingInt = 5;
+      System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+      WebDriver driver=new ChromeDriver();
+      driver.get("http://localhost:8090/lumpofyums/login.jsp");
+      WebElement username=driver.findElement(By.name("username"));
+      WebElement password=driver.findElement(By.name("password"));
+      WebElement login=driver.findElement(By.className("btn"));
+      username.sendKeys("alicia123");
+      password.sendKeys("password");
+      login.click();
+      driver.manage().window().maximize();
+      driver.get("http://localhost:8090/lumpofyums/create_recipe.jsp");
+      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+      WebElement food_name=driver.findElement(By.name("food_name"));
+      WebElement prep_time=driver.findElement(By.name("prep_time"));
+      WebElement cooking_time=driver.findElement(By.name("cooking_time"));
+      WebElement description=driver.findElement(By.name("description"));
+      WebElement ingredients=driver.findElement(By.name("ingredients"));
+      WebElement preparation=driver.findElement(By.name("preparation"));
+      WebElement btn=driver.findElement(By.className("btn"));
+      food_name.sendKeys("Korean Bimbap " + result);
+      prep_time.sendKeys(String.valueOf(prepInt));
+      cooking_time.sendKeys(String.valueOf(cookingInt));
+      description.sendKeys("test");
+      ingredients.sendKeys("test");
+      preparation.sendKeys("test");
+      btn.click();
+      driver.quit();
+  }
+  
+	@Test
+	public void checkUpdateInput() {
+		Random r = new Random();
+		int low = 1;
+		int high = 99;
+		int result = r.nextInt(high-low) + low;
+		int low1 = 1;
+		int high1 = 99;
+		int result1 = r.nextInt(high1-low1) + low1;
+		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://localhost:8090/lumpofyums/login.jsp");
+		WebElement username = driver.findElement(By.name("username"));
+		WebElement password = driver.findElement(By.name("password"));
+		WebElement login = driver.findElement(By.className("btn"));
+		username.sendKeys("alicia123");
+		password.sendKeys("password");
+		login.click();
+		driver.get("http://localhost:8090/lumpofyums/RecipeServlet/recipe?food_name=Chicken%20Ramen");
+		WebElement edit = driver.findElement(By.id("editbtn"));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		edit.click();
+		WebElement food_name = driver.findElement(By.name("food_name"));
+		WebElement prep_time = driver.findElement(By.name("prep_time"));
+		WebElement cooking_time = driver.findElement(By.name("cooking_time"));
+		WebElement description = driver.findElement(By.name("description"));
+		WebElement ingredients = driver.findElement(By.name("ingredients"));
+		WebElement preparation = driver.findElement(By.name("preparation"));
+		WebElement btn = driver.findElement(By.className("btn"));
+		food_name.sendKeys(Keys.CONTROL + "a");
+		food_name.sendKeys(Keys.DELETE);
+		prep_time.sendKeys(Keys.CONTROL + "a");
+		prep_time.sendKeys(Keys.DELETE);
+		cooking_time.sendKeys(Keys.CONTROL + "a");
+		cooking_time.sendKeys(Keys.DELETE);
+		food_name.sendKeys("Chicken Ramen");
+		prep_time.sendKeys(String.valueOf(result));
+		cooking_time.sendKeys(String.valueOf(result1));
+		description.sendKeys("test1");
+		ingredients.sendKeys("test2");
+		preparation.sendKeys("test3");
+		btn.click();
+		driver.quit();
+
+	}
 
   
  

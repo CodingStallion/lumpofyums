@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="lumpofyums.EditRecipeTest">
+      <class name="lumpofyums.NewTest">
         <methods>
-          <include name="checkInput"/>
           <include name="beforeTest"/>
           <include name="afterTest"/>
-          <include name="checkSearch"/>
+          <include name="checkUpdateInput"/>
         </methods>
-      </class> <!-- lumpofyums.EditRecipeTest -->
+      </class> <!-- lumpofyums.NewTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -24,8 +24,8 @@ public class RecipeTest {
       WebElement username=driver.findElement(By.name("username"));
       WebElement password=driver.findElement(By.name("password"));
       WebElement login=driver.findElement(By.className("btn"));
-      username.sendKeys("e");
-      password.sendKeys("kysplslol");
+      username.sendKeys("alicia123");
+      password.sendKeys("password");
       login.click();
       driver.manage().window().maximize();
       driver.get("http://localhost:8090/lumpofyums/create_recipe.jsp");
@@ -37,7 +37,7 @@ public class RecipeTest {
       WebElement ingredients=driver.findElement(By.name("ingredients"));
       WebElement preparation=driver.findElement(By.name("preparation"));
       WebElement btn=driver.findElement(By.className("btn"));
-      food_name.sendKeys("nicefood");
+      food_name.sendKeys("Korean Bimbap");
       prep_time.sendKeys("");
       cooking_time.sendKeys("");
       description.sendKeys("test");

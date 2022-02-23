@@ -25,25 +25,26 @@
 <body>
 
 	<nav class="nav-wrapper">
-
 		<a href="<%=request.getContextPath()%>/RecipeServlet/home"
 			class="brand-logo">Lump Of Yums</a>
 		<ul class="nav-list">
 			<li class="active"><a
 				href="<%=request.getContextPath()%>/RecipeServlet/home">Recipes</a></li>
 			<%
-                                   
-                if (session.getAttribute("logUser") == null) {
-            %>
+			if (session.getAttribute("logUser") == null) {
+			%>
 			<li><a href="<%=request.getContextPath()%>/login.jsp">Sign
 					in</a></li>
 			<li><a href="<%=request.getContextPath()%>/register.jsp">Sign
 					up</a></li>
-			<% } else {
-         %>
+			<%
+			} else {
+			%>
 			<li><a href="<%=request.getContextPath()%>/account.jsp">Account</a></li>
 			<li><a href="<%=request.getContextPath()%>/LogoutServlet">Logout</a></li>
-			<% }%>
+			<%
+			}
+			%>
 		</ul>
 	</nav>
 	<section class="bg-orange main-section">
@@ -65,27 +66,27 @@
 				<h2 class="text-brown mb-small">Recipe name</h2>
 				<div class="mb-small">
 					<input type="text" placeholder="Recipe name" name="food_name"
-						value="<c:out value="${edit.food_name}" />" />
+						value="<c:out value="${edit.food_name}" />" required />
 				</div>
 
 				<div class="mb-small">
 					<input type="hidden" placeholder="Recipe name" name="oriname"
-						value="<c:out value="${edit.food_name}" />" />
+						value="<c:out value="${edit.food_name}" />" required />
 				</div>
 				<h2 class="text-brown mb-small">Prep time</h2>
 				<div class="mb-small">
 					<input type="number" name="prep_time" min="1" max="100"
-						value="<c:out value="${edit.prep_time}" />" /> minutes
+						value="<c:out value="${edit.prep_time}" />" required /> minutes
 				</div>
 				<div class="mb-small">
 					<input type="hidden" name="uid"
-						value="<c:out value="${edit.uid}" />" />
+						value="<c:out value="${edit.uid}"/>" required />
 				</div>
 
 				<h2 class="text-brown mb-small">Cooking time</h2>
 				<div class="mb-small">
 					<input type="number" name="cooking_time" min="1" max="100"
-						value="<c:out value="${edit.cooking_time}" />" /> minutes
+						value="<c:out value="${edit.cooking_time}" />" required /> minutes
 				</div>
 
 
@@ -104,21 +105,21 @@
 				<h2 class="text-brown mb-small">Description</h2>
 				<div class="input-group mb-small">
 					<textarea rows="6" cols="6" name="description"
-						placeholder="Your description here"><c:out
+						placeholder="Your description here" required><c:out
 							value="${edit.description}" /></textarea>
 				</div>
 
 				<h2 class="text-brown mb-small">Ingredients</h2>
 				<div class="input-group mb-small">
 					<textarea rows="10" cols="30" name="ingredients"
-						placeholder="Your ingredients here"> <c:out
+						placeholder="Your ingredients here" required> <c:out
 							value="${edit.ingredients}" /></textarea>
 				</div>
 
 				<h2 class="text-brown mb-small">Preparation</h2>
 				<div class="input-group mb-small">
 					<textarea rows="10" cols="30" name="preparation"
-						placeholder="Your preparation here"><c:out
+						placeholder="Your preparation here" required><c:out
 							value="${edit.preparation}" /></textarea>
 				</div>
 				<input type="submit" class="btn" value="Submit" />

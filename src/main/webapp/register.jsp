@@ -44,14 +44,12 @@
 		<form id="register-form" action="RegisterServlet" method="post">
 			<div class="double-panel bg-orange card-form">
 				<div class="left card-form">
-				
+
 					<div class="input-group">
-					
-					
+
+
 						<label for="username">Username</label> <input type="text"
-							placeholder="Username" name="username" required/>
-							
-	
+							placeholder="Username" name="username" required />
 					</div>
 					<div class="input-group">
 						<label for="email">Email address</label> <input type="email"
@@ -59,7 +57,8 @@
 					</div>
 					<div class="input-group">
 						<label for="password">Password</label> <input type="password"
-							placeholder="Password" name="password" id="password" required minlength="8" maxlength="25"/>
+							placeholder="Password" name="password" id="password" required
+							minlength="8" maxlength="25" />
 					</div>
 					<div class="input-group">
 						<label for="confirm_password">Confirm Password</label> <input
@@ -78,11 +77,11 @@
 				<div class="right card-form">
 					<div class="input-group">
 						<label for="first_name">First Name</label> <input type="text"
-							placeholder="First Name" name="first_name" required/>
+							placeholder="First Name" name="first_name" required />
 					</div>
 					<div class="input-group">
 						<label for="last_name">Last Name</label> <input type="text"
-							placeholder="Last Name" name="last_name" required/>
+							placeholder="Last Name" name="last_name" required />
 					</div>
 					<div class="input-group">
 						<label for="gender">Gender</label> <select name="gender">
@@ -92,7 +91,22 @@
 					</div>
 					<div class="input-group">
 						<label for="phone">Phone</label> <input type="text"
-							placeholder="Phone" name="phone" required maxlength="11"/>
+							placeholder="Phone" name="phone" required maxlength="11" />
+					</div>
+					<div class="input-group">
+						<label for="question">Security Question</label> <select
+							name="question">
+							<option value="What was your favorite food as a child?">What
+								was your favorite food as a child?</option>
+							<option value="In what city were you born?">In what city
+								were you born?</option>
+							<option value="What was the make of your first car?">What
+								was the make of your first car?</option>
+						</select>
+					</div>
+					<div class="input-group">
+						<label for="answer">Answer</label> <input type="text"
+							placeholder="Answer" name="answer" required />
 					</div>
 					<div>
 						<input type="submit" value="Register" class="btn" />

@@ -74,23 +74,22 @@
 
 				<h2 class="text-brown mb-small">Recipe name</h2>
 				<div class="mb-small">
-					<input type="text" placeholder="Recipe name" name="food_name" />
+					<input type="text" placeholder="Recipe name" name="food_name" required />
 				</div>
 				<h2 class="text-brown mb-small">Prep time</h2>
 				<div class="mb-small">
-					<input type="number" value="1" name="prep_time" min="1" max="100" />
+					<input type="number" value="1" name="prep_time" min="1" max="100" required />
 					minutes
 				</div>
 				<h2 class="text-brown mb-small">Cooking time</h2>
 				<div class="mb-small">
 					<input type="number" value="1" name="cooking_time" min="1"
-						max="100" /> minutes
+						max="100" required/> minutes
 				</div>
 
 				<div class="mb-small" style="display: none;">
-					<input type="number" value=<%= user.getId() %> name="uid" />
+					<input type="number" value=<%= user.getId() %> name="uid" required/>
 				</div>
-
 				<h2 class="text-brown mb-small">Level</h2>
 				<div class="mb-small">
 					<select name="level">
@@ -99,26 +98,24 @@
 						<option value="Hard">Hard</option>
 					</select>
 				</div>
-
-
 				<h2 class="text-brown mb-small">Description</h2>
 				<div class="input-group mb-small">
 					<textarea rows="6" cols="6" name="description"
-						placeholder="Your description here"></textarea>
+						placeholder="Your description here" required></textarea>
 				</div>
 
 				<h2 class="text-brown mb-small">Ingredients</h2>
 				<div class="input-group mb-small">
 					<textarea rows="10" cols="30" name="ingredients"
-						placeholder="Your ingredients here"></textarea>
+						placeholder="Your ingredients here" required></textarea>
 				</div>
 
 				<h2 class="text-brown mb-small">Preparation</h2>
 				<div class="input-group mb-small">
 					<textarea rows="10" cols="30" name="preparation"
-						placeholder="Your preparation here"></textarea>
+						placeholder="Your preparation here" required></textarea>
 				</div>
-				<input type="submit" class="btn" value="Submit" />
+				<input type="submit" class="btn" value="Submit"/>
 				<div class="success-msg"></div>
 				<div class="error-msg"></div>
 			</form>

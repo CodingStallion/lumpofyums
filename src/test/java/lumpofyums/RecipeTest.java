@@ -1,4 +1,5 @@
 package lumpofyums;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 //import necessary Selenium WebDriver classes
@@ -10,19 +11,15 @@ import org.testng.annotations.BeforeTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 
-public class NewTest {
+public class RecipeTest {
   //declare Selenium WebDriver
   private WebDriver webDriver;		
- 
+  
   @Test
-  public void checkLogin() {
-      //Load website as a new page
-
-      //Assert the title to check that we are indeed in the correct website
-
+  public void checkInput() {
+	  
       System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
       WebDriver driver=new ChromeDriver();
-      driver.manage().window().maximize();
       driver.get("http://localhost:8090/lumpofyums/login.jsp");
       WebElement username=driver.findElement(By.name("username"));
       WebElement password=driver.findElement(By.name("password"));
@@ -30,13 +27,27 @@ public class NewTest {
       username.sendKeys("e");
       password.sendKeys("kysplslol");
       login.click();
-      String actualUrl="http://localhost:8090/lumpofyums/account.jsp";
-      String expectedUrl= driver.getCurrentUrl();
-      Assert.assertEquals(expectedUrl,actualUrl);
+      driver.manage().window().maximize();
+      driver.get("http://localhost:8090/lumpofyums/create_recipe.jsp");
+      driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS) ;
+      WebElement food_name=driver.findElement(By.name("food_name"));
+      WebElement prep_time=driver.findElement(By.name("prep_time"));
+      WebElement cooking_time=driver.findElement(By.name("cooking_time"));
+      WebElement description=driver.findElement(By.name("description"));
+      WebElement ingredients=driver.findElement(By.name("ingredients"));
+      WebElement preparation=driver.findElement(By.name("preparation"));
+      WebElement btn=driver.findElement(By.className("btn"));
+      food_name.sendKeys("nicefood");
+      prep_time.sendKeys("");
+      cooking_time.sendKeys("");
+      description.sendKeys("test");
+      ingredients.sendKeys("test");
+      preparation.sendKeys("test");
+      btn.click();
+
       driver.quit();
   }
-  
-  
+	    
   @BeforeTest
   public void beforeTest() {
 	  //Setting system properties of ChromeDriver

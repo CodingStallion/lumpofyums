@@ -76,7 +76,7 @@ if (user == null) {
 
 
 		<c:if test="${recipe.username == logUser1}">
-			<a class="btn" style="float: right; color: white;"
+			<a id="editbtn" class="btn" style="float: right; color: white;"
 				href="edit?food_name=<c:out value='${recipe.food_name}' />">Edit
 				Recipe</a>
 

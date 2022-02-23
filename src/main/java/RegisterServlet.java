@@ -49,9 +49,10 @@ public class RegisterServlet extends HttpServlet {
 		String last_name = request.getParameter("last_name");
 		int phone = Integer.parseInt(request.getParameter("phone"));
 		String gender = request.getParameter("gender");
+		String question = request.getParameter("question");
+		String answer = request.getParameter("answer");
 		//make user object
-		User userModel = new User(username, email, address, password, first_name, last_name, phone, gender);
-
+		User userModel = new User(username, email, address, password, first_name, last_name, phone, gender,question,answer);
 		//create a database model
 		UserDatabase regUser = new UserDatabase(ConnectionPro.getConnection());
 		if (regUser.saveUser(userModel)) {

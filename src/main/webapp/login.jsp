@@ -44,8 +44,8 @@
 				<form id="login-form" class="card-form bg-orange"
 					action="LoginServlet" method="post">
 					<div class="input-group">
-						<label for="username">Username</label> <input  type="text"
-							placeholder="Username" name="username" required/>
+						<label for="username">Username</label> <input type="text"
+							placeholder="Username" name="username" required />
 					</div>
 					<div class="input-group">
 						<label for="password">Password</label> <input required
@@ -55,6 +55,10 @@
 						<input type="submit" value="Continue" class="btn" />
 					</div>
 					<div class="error-msg"></div>
+					<div>
+						<a href="forgotpassword.jsp">Forgot Password?</a>
+					</div>
+
 				</form>
 			</div>
 			<div class="right">

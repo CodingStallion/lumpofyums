@@ -40,7 +40,8 @@ public class NewTest {
       driver.quit();
   }
   
-  @Test
+  /*
+ @Test
   public void checkRegister() {
       //Load website as a new page
 
@@ -77,7 +78,7 @@ public class NewTest {
       Assert.assertEquals(expectedUrl,actualUrl);
       driver.quit();
   }
-  
+  */
   
 
   
@@ -191,6 +192,8 @@ public class NewTest {
       driver.quit();
   }
   
+  /*
+  
 	@Test
 	public void checkUpdateInput() {
 		Random r = new Random();
@@ -237,6 +240,7 @@ public class NewTest {
 
 	}
 
+*/
   
  
   

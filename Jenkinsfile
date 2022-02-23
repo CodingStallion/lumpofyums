@@ -8,7 +8,8 @@ pipeline {
         stage ('Initialize') {
             steps {
                 sh '''
-                    echo "C:\Program Files\apache-maven-3.8.2\bin"
+                    echo "PATH = ${PATH}"
+                    echo "M2 = ${M2}"
                 '''
             }
         }

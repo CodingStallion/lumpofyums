@@ -1,5 +1,6 @@
 package lumpofyums;
 
+import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class Recipe {
@@ -15,6 +16,8 @@ public class Recipe {
 	int uid;
 	Timestamp created_at;
 	String username;
+	Blob image;
+	String imageData;
 
 	public String getUsername() {
 		return username;
@@ -23,9 +26,26 @@ public class Recipe {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	public String getimageData() {
+		return imageData;
+	}
+
+	public void setimageData(String imageData) {
+		this.imageData = imageData;
+	}
+	
+
+	public Blob getImage() {
+		return image;
+	}
+
+	public void setImage(Blob image) {
+		this.image = image;
+	}
 
 	public Recipe(String food_name, int prep_time, int cooking_time, String level, String description,
-			String ingredients, String preparation, int uid, String username) {
+			String ingredients, String preparation, int uid, String username, String imageData) {
 		super();
 		this.food_name = food_name;
 		this.prep_time = prep_time;
@@ -36,6 +56,7 @@ public class Recipe {
 		this.preparation = preparation;
 		this.uid = uid;
 		this.username = username;
+		this.imageData = imageData;
 	}
 
 	public Integer getId() {

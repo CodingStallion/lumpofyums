@@ -5,9 +5,11 @@
     <classes>
       <class name="lumpofyums.EditRecipeTest">
         <methods>
+
           <include name="checkInput"/>
           <include name="beforeTest"/>
           <include name="afterTest"/>
+          <include name="checkSearch"/>
         </methods>
       </class> <!-- lumpofyums.EditRecipeTest -->
     </classes>

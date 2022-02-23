@@ -1,60 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	version="3.1">
-	<display-name>lumpofyums</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-	<servlet>
-		<servlet-name>RecipeServlet</servlet-name>
-		<servlet-class>RecipeServlet</servlet-class>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>lumpofyums</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>RecipeServlet</servlet-name>
+    <servlet-class>RecipeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>UserServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CommentServlet</servlet-name>
+    <servlet-class>CommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecipeServlet</servlet-name>
+    <url-pattern>/RecipeServlet/home</url-pattern>
+    <url-pattern>/RecipeServlet/recipe</url-pattern>
+    <url-pattern>/RecipeServlet/update</url-pattern>
+    <url-pattern>/RecipeServlet/edit</url-pattern>
+    <url-pattern>/RecipeServlet/delete</url-pattern>
+    <url-pattern>/RecipeServlet/easy</url-pattern>
+    <url-pattern>/RecipeServlet/normal</url-pattern>
+    <url-pattern>/RecipeServlet/hard</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/UserServlet/delete</url-pattern>
+    <url-pattern>/UserServlet/edit</url-pattern>
+    <url-pattern>/UserServlet/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CommentServlet</servlet-name>
+    <url-pattern>/CommentServlet/list</url-pattern>
+    <url-pattern>/CommentServlet/delete</url-pattern>
+    <url-pattern>/CommentServlet/edit</url-pattern>
+    <url-pattern>/CommentServlet/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Search</display-name>
+    <servlet-name>Search</servlet-name>
+    <jsp-file>/register.jsp</jsp-file>
+  </servlet>
 
-	</servlet>
-
-	<servlet>
-		<servlet-name>UserServlet</servlet-name>
-		<servlet-class>UserServlet</servlet-class>
-	</servlet>
-
-	<servlet>
-		<servlet-name>CommentServlet</servlet-name>
-		<servlet-class>CommentServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-
-		<servlet-name>RecipeServlet</servlet-name>
-		<url-pattern>/RecipeServlet/home</url-pattern>
-		<url-pattern>/RecipeServlet/recipe</url-pattern>
-		<url-pattern>/RecipeServlet/update</url-pattern>
-		<url-pattern>/RecipeServlet/edit</url-pattern>
-		<url-pattern>/RecipeServlet/delete</url-pattern>
-
-
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>UserServlet</servlet-name>
-		<url-pattern>/UserServlet/delete</url-pattern>
-		<url-pattern>/UserServlet/edit</url-pattern>
-		<url-pattern>/UserServlet/update</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CommentServlet</servlet-name>
-		<url-pattern>/CommentServlet/list</url-pattern>
-		<url-pattern>/CommentServlet/delete</url-pattern>
-		<url-pattern>/CommentServlet/edit</url-pattern>
-		<url-pattern>/CommentServlet/update</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.css</url-pattern>
-	</servlet-mapping>
 </web-app>

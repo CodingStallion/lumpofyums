@@ -50,6 +50,8 @@
 		</ul>
 	</nav>
 
+ 
+ 
 
 	<section class="bg-orange main-section">
 		<div class="mb-medium">
@@ -62,18 +64,35 @@
 				Recipe</a>
 			<%
 			}
-			%>
-		</div>
-		<form id="search-form" class="search-input mb-large">
-			<button type="submit"></button>
-			<input type="text" placeholder="Search" name="search_term"
+			%>	
+			
+			<a class="btn" id="hardBtn" style="float: right; margin-right: 6px;"
+				href="<%=request.getContextPath()%>/RecipeServlet/hard">SORT BY HARD LEVEL</a>
+			
+			<a class="btn" id="normalBtn" style="float: right; margin-right: 6px;"
+				href="<%=request.getContextPath()%>/RecipeServlet/normal">SORT BY NORMAL LEVEL</a>
+				
+				
+				<a class="btn" id="easyBtn" style="float: right; margin-right: 6px;"
+				href="<%=request.getContextPath()%>/RecipeServlet/easy">SORT BY EASY LEVEL</a>
+					</div>
+					
+					
+			
+			
+
+		<form id="search-form" class="search-input mb-large" method="post" action="<%=request.getContextPath()%>/search.jsp">
+			
+			<input type="text" placeholder="Search" name="food_name"
 				class="input" />
+				<button type="submit" class="submit_search"></button>
 		</form>
 
 		<div>
 			<ul class="restaurant-list">
 				<c:forEach var="recipe" items="${listUsers}">
 					<li class="restaurant-item">
+					<img src="data:image/jpg;base64, <c:out value="${recipe.imageData}" />"  alt="Img">
 						<div class="text-align-center">
 							<h4 class="mb-small">
 								<c:out value="${recipe.food_name}" />

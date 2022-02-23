@@ -63,7 +63,7 @@
 					<div class="input-group">
 						<label for="confirm_password">Confirm Password</label> <input
 							type="password" placeholder="Confirm Password"
-							name="confirm_password" id="confirm_password" required />
+							name="confirm_password" id="confirm_password" />
 					</div>
 					<div class="input-group">
 						<label for="address">Address</label> <input type="text"
@@ -90,6 +90,7 @@
 						</select>
 					</div>
 					<div class="input-group">
+
 						<label for="phone">Phone</label> <input type="text"
 							placeholder="Phone" name="phone" required maxlength="11" />
 					</div>
@@ -107,6 +108,7 @@
 					<div class="input-group">
 						<label for="answer">Answer</label> <input type="text"
 							placeholder="Answer" name="answer" required />
+
 					</div>
 					<div>
 						<input type="submit" value="Register" class="btn" />

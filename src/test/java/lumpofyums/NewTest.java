@@ -28,8 +28,8 @@ public class NewTest {
       WebElement username=driver.findElement(By.name("username"));
       WebElement password=driver.findElement(By.name("password"));
       WebElement login=driver.findElement(By.className("btn"));
-      username.sendKeys("alicia123");
-      password.sendKeys("password");
+      username.sendKeys("e");
+      password.sendKeys("kysplslol");
       login.click();
       String actualUrl="http://localhost:8090/lumpofyums/account.jsp";
       String expectedUrl= driver.getCurrentUrl();

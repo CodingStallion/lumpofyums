@@ -36,7 +36,9 @@ public class UserServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      
 	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
@@ -166,14 +168,14 @@ public class UserServlet extends HttpServlet {
 		// Step 3: redirect back to UserServlet
 		response.sendRedirect("http://localhost:8090/lumpofyums/LogoutServlet");
 		
-		
+	
 	}
 
 	// method to delete user
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-		// Step 1: Retrieve value from the request
+		// Retrieve value from the request
 		int id = Integer.parseInt(request.getParameter("id"));
-		// Step 2: Attempt connection with database and execute delete user SQL query
+		//Attempt connection with database and execute delete user SQL query
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
 			statement.setInt(1, id);

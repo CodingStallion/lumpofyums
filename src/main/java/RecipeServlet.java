@@ -47,6 +47,7 @@ public class RecipeServlet extends HttpServlet {
 	private static final String INSERT_RECIPE_SQL = "INSERT INTO RECIPE"
 			+ " (food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid) VALUES "
 			+ " (?,?,?,?,?,?,?,?);";
+
 	private static final String SELECT_RECIPE_BY_ID = "select food_name, prep_time, cooking_time, level, description, ingredients, preparation, uid, image, username from recipe R INNER JOIN user U ON R.uid = U.id where food_name =?";
 	private static final String SELECT_ALL_RECIPE = "select * from recipe R INNER JOIN user U ON R.uid = U.id order by food_name";
 	private static final String SELECT_RECIPE_EASY = "select * from recipe R INNER JOIN user U ON R.uid = U.id where level like 'Easy'";
@@ -168,9 +169,7 @@ public class RecipeServlet extends HttpServlet {
 	// method to get parameter, query database for existing user data and redirect
 	// to user edit page
 	private void showRecipe(HttpServletRequest request, HttpServletResponse response)
-
 			throws SQLException, ServletException, IOException {
-
 		// get parameter passed in the URL
 		String food_name = request.getParameter("food_name");
 		Recipe existingRecipe = new Recipe("", 1, 1, "", "", "", "", 1, "","");
@@ -416,12 +415,13 @@ public class RecipeServlet extends HttpServlet {
 		response.sendRedirect("http://localhost:8090/lumpofyums/RecipeServlet/home");
 	}
 
-	// method to delete user
+	// method to delete recipe
+	
 	private void deleteRecipe(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 		// Step 1: Retrieve value from the request
 		String food_name = request.getParameter("food_name");
-		// Step 2: Attempt connection with database and execute delete user SQL query
+		// Step 2: Attempt connection with database and execute delete  SQL query
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_RECIPE_SQL);) {
 			statement.setString(1, food_name);

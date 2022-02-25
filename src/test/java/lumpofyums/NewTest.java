@@ -1,3 +1,5 @@
+/*
+
 package lumpofyums;
 
 import java.util.Random;
@@ -197,7 +199,7 @@ public class NewTest {
 	}
 
 	// Done By Eithan
-	/*@Test
+	@Test
 	public void checkUpdateInput() {
 		Random r = new Random();
 		int low = 1;
@@ -241,7 +243,7 @@ public class NewTest {
 		btn.click();
 		driver.quit();
 
-	}*/
+	}
 
 	@BeforeTest
 	public void beforeTest() {
@@ -262,3 +264,5 @@ public class NewTest {
 	}
 
 }
+
+*/

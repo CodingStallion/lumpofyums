@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="lumpofyums.User"%>
-
+<%@page import="lumpofyums.RecipeServlet"%>
 <%@page import="lumpofyums.Recipe"%>
 <!DOCTYPE html>
 <html>

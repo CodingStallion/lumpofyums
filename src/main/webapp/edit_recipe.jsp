@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="lumpofyums.RecipeServlet"%>
+
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -86,7 +89,8 @@
 				<h2 class="text-brown mb-small">Cooking time</h2>
 				<div class="mb-small">
 					<input type="number" name="cooking_time" min="1" max="100"
-						value="<c:out value="${edit.cooking_time}" />" required /> minutes
+						value="<c:out value="${edit.cooking_time}" />" required />
+					minutes
 				</div>
 
 

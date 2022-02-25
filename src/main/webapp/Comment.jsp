@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="lumpofyums.CommentServlet"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,13 +65,13 @@
 			</h1>
 
 			<div class="restaurant-info">
-			<div class="mb-medium">
-				<p class="address">
-					<c:out value="Posted by: ${username}" />
-				</p>
+				<div class="mb-medium">
+					<p class="address">
+						<c:out value="Posted by: ${username}" />
+					</p>
+				</div>
 			</div>
 		</div>
-</div>
 
 		<h1 class="text-brown mb-small" style="margin-top: 30px;">Comments</h1>
 

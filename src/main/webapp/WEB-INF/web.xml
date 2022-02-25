@@ -11,15 +11,15 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>RecipeServlet</servlet-name>
-    <servlet-class>RecipeServlet</servlet-class>
+    <servlet-class>lumpofyums.RecipeServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>UserServlet</servlet-class>
+    <servlet-class>lumpofyums.UserServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CommentServlet</servlet-name>
-    <servlet-class>CommentServlet</servlet-class>
+    <servlet-class>lumpofyums.CommentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RecipeServlet</servlet-name>

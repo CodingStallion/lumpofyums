@@ -6,8 +6,15 @@
       <class name="lumpofyums.NewTest">
         <methods>
           <include name="beforeTest"/>
+          <include name="checkLogin"/>
           <include name="afterTest"/>
           <include name="checkUpdateInput"/>
+          <include name="checkRegister"/>
+          <include name="checkCreateInput"/>
+          <include name="checkHardSort"/>
+          <include name="checkNormalSort"/>
+          <include name="checkEasySort"/>
+          <include name="checkSearch"/>
         </methods>
       </class> <!-- lumpofyums.NewTest -->
     </classes>

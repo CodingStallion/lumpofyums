@@ -1,4 +1,4 @@
-/*
+
 
 package lumpofyums;
 
@@ -217,7 +217,7 @@ public class NewTest {
 		username.sendKeys("alicia123");
 		password.sendKeys("password");
 		login.click();
-		driver.get("http://localhost:8090/lumpofyums/RecipeServlet/recipe?food_name=testfood");
+		driver.get("http://localhost:8090/lumpofyums/RecipeServlet/recipe?food_name=Chicken%20Ramen");
 		WebElement edit = driver.findElement(By.id("editbtn"));
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		edit.click();
@@ -264,5 +264,3 @@ public class NewTest {
 	}
 
 }
-
-*/

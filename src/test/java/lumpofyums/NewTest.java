@@ -1,4 +1,4 @@
-package lumpofyums;
+/*package lumpofyums;
 
 import org.openqa.selenium.By;
 //import necessary Selenium WebDriver classes
@@ -56,3 +56,5 @@ public class NewTest {
   }
 
 }
+
+*/

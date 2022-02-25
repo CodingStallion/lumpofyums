@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@page import="lumpofyums.UserServlet"%>
 <%@page import="lumpofyums.User"%>
 <%
 User user = (User) session.getAttribute("logUser");
@@ -32,7 +32,6 @@ if (user == null) {
 <title>Lump Of Yums</title>
 </head>
 <body>
-
 	<!--  Lump Of Yums Update 1 -->
 	<nav class="nav-wrapper">
 		<a href="<%=request.getContextPath()%>/RecipeServlet/home"

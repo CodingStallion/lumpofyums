@@ -1,5 +1,3 @@
-
-
 package lumpofyums;
 
 import java.util.Random;

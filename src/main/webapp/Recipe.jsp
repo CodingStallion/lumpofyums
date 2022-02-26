@@ -181,7 +181,7 @@ if (user == null) {
 		<form id="review-form" action="CreateCommentServlet" method="post">
 			<div class="input-group mb-small">
 				<textarea rows="10" cols="30" name="comment"
-					placeholder="Your comment here"></textarea>
+					placeholder="Your comment here " required></textarea>				
 				<br />
 			</div>
 			<div class="mb-small" style="display: none;">
@@ -189,7 +189,7 @@ if (user == null) {
 
 			</div>
 			<div class="mb-small" style="display: none;">
-				<input type="text" value="${recipe.food_name}" name="recipe_name" />
+				<input type="text" value="${recipe.food_name}" name="recipe_name" required />
 			</div>
 
 			<input type="submit" class="btn" value="Submit" />

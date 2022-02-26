@@ -243,6 +243,51 @@ public class NewTest {
 
 	}
 
+	@Test
+	public void checkCommentInput() {
+		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://localhost:8090/lumpofyums/login.jsp");
+		WebElement username = driver.findElement(By.name("username"));
+		WebElement password = driver.findElement(By.name("password"));
+		WebElement login = driver.findElement(By.className("btn"));
+		username.sendKeys("KevKevMalone");
+		password.sendKeys("password");
+		login.click();
+		driver.manage().window().maximize();
+		driver.get("http://localhost:8090/lumpofyums/RecipeServlet/recipe?food_name=Chicken%20Ramen");
+		WebElement comment = driver.findElement(By.name("comment"));
+		WebElement btn = driver.findElement(By.className("btn"));
+		comment.sendKeys("Nice Food ");
+		btn.click();
+		driver.quit();
+
+	}
+
+	@Test
+	public void checkUpdateComments() {
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Google\\Chrome\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://localhost:8090/lumpofyums/login.jsp");
+		WebElement username = driver.findElement(By.name("username"));
+		WebElement password = driver.findElement(By.name("password"));
+		WebElement login = driver.findElement(By.className("btn"));
+		username.sendKeys("alicia123");
+		password.sendKeys("password");
+		login.click();
+		driver.get("http://localhost:8090/lumpofyums/CommentServlet/edit?id=8");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		WebElement comment = driver.findElement(By.name("comment"));
+		WebElement btn = driver.findElement(By.className("btn"));
+		comment.sendKeys(Keys.CONTROL + "a");
+		comment.sendKeys(Keys.DELETE);
+		comment.sendKeys("Terrible Food");
+		btn.click();
+		driver.quit();
+
+	}
+
 	@BeforeTest
 	public void beforeTest() {
 		// Setting system properties of ChromeDriver
@@ -262,4 +307,3 @@ public class NewTest {
 	}
 
 }
-
